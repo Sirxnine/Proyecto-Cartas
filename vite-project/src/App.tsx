@@ -26,14 +26,17 @@ function App() {
     setCartaSeleccionada(null);
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800">
+ return (
+  <>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Header busqueda={busqueda} setBusqueda={setBusqueda} />
-      {cartasFiltradas.length === 0 && (
-      <p className="text-red-400">No se encontraron luchadores...</p>
-)}
-      
       <main className="container mx-auto px-4 py-8">
+        {cartasFiltradas.length === 0 && (
+          <div className="text-center py-8">
+            <p className="text-red-400 text-lg">No se encontraron luchadores con "{busqueda}"</p>  
+          </div>
+        )}
+    
         {/* La ListaCartas vendrá aquí - Paso 4 */}
         
         {/* El ModalCarta vendrá aquí - Paso 5 */}
@@ -41,6 +44,7 @@ function App() {
         {/* El FormularioCarta vendrá después - Paso 6 */}
       </main>
     </div>
+  </>
   );
 }
 
