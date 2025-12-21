@@ -270,6 +270,168 @@ export const cartasDragonBallSuper: Carta[] = [
     anime: "Dragon Ball Super"
   }
 ];
+export const cartasShumatsuValkyrie: Carta[] = [
+  {
+    id: 501,
+    nombre: "Thor",
+    imagen: "https://i.pinimg.com/originals/39/aa/29/39aa2978234396cce7634d201ca5671c.jpg",
+    descripcion: "Dios nórdico del trueno y el más fuerte entre los dioses escandinavos. Portador del martillo Mjölnir.",
+    tipo: "Dios",
+    rareza: "SS",
+    poder: 9700,
+    defensa: 9200,
+    habilidadPasiva: "Poder del Trueno - Ataques eléctricos adicionales",
+    habilidadUltimate: "Mjölnir Desatado - Libera el verdadero poder del martillo divino",
+    anime: "Shumatsu no Valkyrie"
+  },
+  {
+    id: 502,
+    nombre: "Lu Bu",
+    imagen: "https://i.pinimg.com/736x/fa/76/55/fa765567984d32f136a31ae21620200e.jpg",
+    descripcion: "El guerrero más fuerte de la historia humana de China. Conocido como el Dios de la Guerra y maestro de la lanza Sky Piercer.",
+    tipo: "Guerrero",
+    rareza: "S",
+    poder: 9500,
+    defensa: 8800,
+    habilidadPasiva: "Fuerza Inhumana - Ignora 30% de la defensa enemiga",
+    habilidadUltimate: "Golpe Celestial - Estocada que atraviesa cualquier defensa",
+    anime: "Shumatsu no Valkyrie"
+  },
+  {
+    id: 503,
+    nombre: "Poseidón",
+    imagen: "https://i.pinimg.com/736x/69/04/86/6904866633f4e3cd4e85053716138b44.jpg",
+    descripcion: "Dios griego de los mares y uno de los 12 dioses principales del Olimpo. Considerado perfecto e invencible.",
+    tipo: "Dios",
+    rareza: "SS",
+    poder: 9800,
+    defensa: 8500,
+    habilidadPasiva: "Perfección Divina - No puede ser golpeado críticamente",
+    habilidadUltimate: "40 Días de Inundación - Ataca 40 veces en un instante",
+    anime: "Shumatsu no Valkyrie"
+  },
+  {
+    id: 504,
+    nombre: "Sasaki Kojiro",
+    imagen: "https://i.pinimg.com/736x/72/d5/5d/72d55d5d10ffd577410637847f4edb3f.jpg",
+    descripcion: "El mayor perdedor de la historia que se volvió invencible tras analizar todas sus derrotas. Representante de la humanidad.",
+    tipo: "Espadachín",
+    rareza: "S",
+    poder: 8600,
+    defensa: 8300,
+    habilidadPasiva: "Escaneo Divino - Predice todos los movimientos enemigos",
+    habilidadUltimate: "Tsubame Gaeshi Perfecto - Golpea desde tres direcciones simultáneas",
+    anime: "Shumatsu no Valkyrie"
+  }
+];
+export const cartasOnePiece: Carta[] = [
+  {
+    id: 601,
+    nombre: "Monkey D. Luffy (Gear 5)",
+    imagen: "https://preview.redd.it/favorite-gear-5-panel-v0-5t92m332r00f1.png?width=1080&format=png&auto=webp&s=5379403134127764eb5c3b9ecbfd640aa4fbf0f0",
+    descripcion: "Capitán de los Piratas de Sombrero de Paja y usuario de la Gomu Gomu no Mi (Nika Nika no Mi). Su forma Gear 5 lo convierte en el 'Guerrero de la Liberación'.",
+    tipo: "Pirata",
+    rareza: "SS",
+    poder: 9700,
+    defensa: 9300,
+    habilidadPasiva: "Cuerpo de Goma - Inmune a golpes contundentes",
+    habilidadUltimate: "Bajrang Gun - Golpe gigante que combina Haki de Conquistador y Gear 5",
+    anime: "One Piece"
+  },
+  {
+    id: 602,
+    nombre: "Roronoa Zoro",
+    imagen: "https://preview.redd.it/gk9qdvjd8e711.jpg?width=640&crop=smart&auto=webp&s=792e56ee4a6893323d5f8399e536dbf12cd89983",
+    descripcion: "Espadachín de los Piratas de Sombrero de Paja y usuario del estilo de tres espadas. Busca convertirse en el mejor espadachín del mundo.",
+    tipo: "Espadachín",
+    rareza: "S",
+    poder: 9200,
+    defensa: 8700,
+    habilidadPasiva: "Haki del Rey de Conquistadores - Intimida a enemigos débiles",
+    habilidadUltimate: "Santoryu Ogi: Ichidai Sanzen Daisen Sekai - Corte que abre el infierno",
+    anime: "One Piece"
+  },
+  {
+    id: 603,
+    nombre: "Kaido",
+    imagen: "https://i.pinimg.com/736x/20/c7/3d/20c73dc248852e569a42da48a3e5ce54.jpg",
+    descripcion: "Capitán de los Piratas de las Bestias y uno de los Cuatro Emperadores. Conocido como 'La Criatura Más Fuerte del Mundo'.",
+    tipo: "Pirata",
+    rareza: "SS",
+    poder: 9800,
+    defensa: 9600,
+    habilidadPasiva: "Piel de Dragón - Reduce 50% del daño recibido",
+    habilidadUltimate: "Boro Breath - Aliento de dragón que incinera todo",
+    anime: "One Piece"
+  },
+  {
+    id: 604,
+    nombre: "Shanks",
+    imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU1wzlmBPCJMdPPMpMfW3Jql7BvdVJP8D-vw&s",
+    descripcion: "Capitán de los Piratas de Pelirrojo y uno de los Cuatro Emperadores. Poseedor de un poderoso Haki de Conquistadores.",
+    tipo: "Pirata",
+    rareza: "S",
+    poder: 9400,
+    defensa: 8900,
+    habilidadPasiva: "Haki Supremo - Puede detener ataques a distancia",
+    habilidadUltimate: "Divine Departure - Golpe que combina armamento y conquistador",
+    anime: "One Piece"
+  }
+];
+export const cartasBokuNoHero: Carta[] = [
+  {
+    id: 701,
+    nombre: "Izuku Midoriya (One For All 100%)",
+    imagen: "https://i.pinimg.com/736x/d1/3b/a0/d13ba0e36936cda2ad7a424e4ec8e0ee.jpg",
+    descripcion: "Portador del Quirk One For All. Puede usar el 100% de su poder sin lastimarse gracias al control de los portadores anteriores.",
+    tipo: "Héroe",
+    rareza: "SS",
+    poder: 9500,
+    defensa: 9000,
+    habilidadPasiva: "One For All - Acumula poder de portadores anteriores",
+    habilidadUltimate: "Delaware Detroit Smash - Golpe aéreo de máxima potencia",
+    anime: "Boku no Hero"
+  },
+  {
+    id: 702,
+    nombre: "Katsuki Bakugo",
+    imagen: "https://i.pinimg.com/1200x/a5/80/4c/a5804cb4d322e2be86b0b99f28ca0500.jpg",
+    descripcion: "Poseedor del Quirk Explosión que produce nitroglicerina de sus palmas. Conocido por su personalidad explosiva y deseo de ser el número uno.",
+    tipo: "Héroe",
+    rareza: "S",
+    poder: 9200,
+    defensa: 8500,
+    habilidadPasiva: "Reflejos Explosivos - Puede propulsarse en cualquier dirección",
+    habilidadUltimate: "Howitzer Impact - Ataque explosivo giratorio de alta velocidad",
+    anime: "Boku no Hero"
+  },
+  {
+    id: 703,
+    nombre: "Shoto Todoroki",
+    imagen: "https://i.pinimg.com/1200x/41/a8/7a/41a87a29f73c22c20c3f9c429f863591.jpg",
+    descripcion: "Hijo de Endeavor, posee el Quirk Hielo y Fuego heredado de sus padres. Puede crear hielo con su lado derecho y fuego con su lado izquierdo.",
+    tipo: "Héroe",
+    rareza: "S",
+    poder: 9100,
+    defensa: 8800,
+    habilidadPasiva: "Termorregulación - Neutraliza efectos de calor/frío extremos",
+    habilidadUltimate: "Gran Glaciación - Congela todo en un radio masivo",
+    anime: "Boku no Hero"
+  },
+  {
+    id: 704,
+    nombre: "All Might",
+    imagen: "https://i.pinimg.com/736x/a9/9e/72/a99e729bec31d70bb47adf3fa6aefa5d.jpg",
+    descripcion: "Símbolo de la Paz y antiguo portador de One For All. Aunque debilitado, puede acceder brevemente a su forma musculosa.",
+    tipo: "Héroe",
+    rareza: "SS",
+    poder: 9800,
+    defensa: 9600,
+    habilidadPasiva: "Símbolo de la Paz - Inspira a aliados, intimida a enemigos",
+    habilidadUltimate: "United States of Smash - Golpe definitivo con todo su poder",
+    anime: "Boku no Hero"
+  }
+];
 
 
 export const cartasEjemplo: Carta[] = [
@@ -278,6 +440,9 @@ export const cartasEjemplo: Carta[] = [
   ...cartasSoloLeveling,
   ...cartasJujutsuKaisen,
   ...cartasDragonBallSuper,
+  ...cartasShumatsuValkyrie,
+  ...cartasBokuNoHero,
+  ...cartasOnePiece
 ];
 export const gruposAnime: GrupoAnime[] = [
   {
@@ -313,5 +478,26 @@ export const gruposAnime: GrupoAnime[] = [
     imagenPortada: "https://i.pinimg.com/564x/44/49/6c/44496c457c38022e2f1c578664ae037f.jpg",
     descripcion: "Dragon Ball Super es la continuación oficial y canónica de Dragon Ball Z. La historia comienza unos meses después de la derrota de Majin Buu y expande el universo de la franquicia a una escala multiversal y divina.",
     cantidadCartas: cartasDragonBallSuper.length
+  },
+  {
+    id: "Shumatsu no Valkyrie",
+    nombre: "Shumatsu no Valkyrie",
+    imagenPortada: "https://i.pinimg.com/736x/f3/f4/1f/f3f41f72ff3034154a8d56c849931e58.jpg",
+    descripcion: "Humanos vs dioses en un torneo para decidir el destino de la humanidad.",
+    cantidadCartas: cartasShumatsuValkyrie.length
+  },
+  {
+    id: "One Piece",
+    nombre: "One Piece",
+    imagenPortada: "https://i.pinimg.com/736x/e9/9f/65/e99f65521c2675130ea54201f0376296.jpg",
+    descripcion: "Aventuras piratas en busca del tesoro definitivo, el One Piece.",
+    cantidadCartas: cartasOnePiece.length
+  },
+  {
+    id: "Boku no Hero",
+    nombre: "My Hero Academia",
+    imagenPortada: "https://i.pinimg.com/1200x/b6/0d/94/b60d94bb56b5dd13492e2a398827fc7e.jpg",
+    descripcion: "Estudiantes de una academia de héroes desarrollan sus poderes (quirks).",
+    cantidadCartas: cartasBokuNoHero.length
   }
 ];
