@@ -172,7 +172,7 @@ export const cartasJujutsuKaisen: Carta[] = [
     rareza: "SS",
     poder: 9900,
     defensa: 8500,
-    habilidadPasiva: "Seis Ojos - Ve el flujo de energía maldita y copia técnicas",
+    habilidadPasiva: "Seis Ojos - Ve el flujo de energía maldita y le proporciona energia infinita",
     habilidadUltimate: "Vacío Infinito - Atrapa objetivos en un bucle infinito de información",
     anime: "Jujutsu Kaisen"
   },
