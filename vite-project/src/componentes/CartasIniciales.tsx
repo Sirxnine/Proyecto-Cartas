@@ -16,7 +16,7 @@ export const cartasGOH: Carta[] = [
   {
     id: 2,
     nombre: "Han Daewi",
-    imagen: "https://i.pinimg.com/1200x/e8/8a/7d/e88a7da089fbcf95163b69f1e4761d5b.jpg",
+    imagen: "https://i.pinimg.com/1200x/0f/a8/65/0fa8654164eae5834d0e55e836b5b035.jpg",
     descripcion: "El Rey de la Tierra, poseedor de una fuerza sobrehumana y gran inteligencia táctica. Mejor amigo de Mori.",
     tipo: "Luchador",
     rareza: "S",
@@ -28,7 +28,7 @@ export const cartasGOH: Carta[] = [
   {
     id: 3,
     nombre: "Park Il-Pyo",
-    imagen: "https://i.pinimg.com/736x/69/1a/ea/691aea1b816e581e75f4640ddbbe7a56.jpg",
+    imagen: "https://i.pinimg.com/1200x/e6/91/04/e69104c817244c31f6edc7660641e99f.jpg",
     descripcion: "El Zorro de Seis Colas, usuario del poder del zorro de nueve colas y maestro del taekwondo.",
     tipo: "Mago",
     rareza: "A",
@@ -54,7 +54,7 @@ export const cartasNaruto: Carta[] = [
   {
     id: 101,
     nombre: "Naruto Uzumaki",
-    imagen: "https://preview.redd.it/reasons-why-naruto-uzumaki-is-the-best-hokage-v0-vq9pms038bya1.jpg?width=640&crop=smart&auto=webp&s=12150642ae4b9cb97122ecf1b2e885db5a9c260f",
+    imagen: "https://i.pinimg.com/736x/82/76/6c/82766c626b8ffad59b022c967efaa252.jpg",
     descripcion: "Ex-Hokage de la Hoja.",
     tipo: "Ninja",
     rareza: "SS",
@@ -66,7 +66,7 @@ export const cartasNaruto: Carta[] = [
   {
     id: 102,
     nombre: "Sasuke Uchiha",
-    imagen: "https://i.pinimg.com/736x/41/a5/a8/41a5a88487ce52ec3901f8721187c3a5.jpg",
+    imagen: "https://i.pinimg.com/736x/e1/3f/a9/e13fa9f755ab523b5d8660ee3e340022.jpg",
     descripcion: "Último sobreviviente del Clan Uchiha.",
     tipo: "Ninja",
     rareza: "SS",
@@ -78,7 +78,7 @@ export const cartasNaruto: Carta[] = [
   {
     id: 103,
     nombre: "Minato Namikaze",
-    imagen: "https://wallpapers.com/images/hd/minatonamikaze-reanimado-ij3gxuijz1ec0iin.jpg",
+    imagen: "https://i.pinimg.com/736x/0c/8a/45/0c8a455b6887b6aabd24e7da46366c00.jpg",
     descripcion: "Cuarto Hokage, conocido como 'Relámpago Amarillo de Konoha'. Padre de Naruto.",
     tipo: "Ninja",
     rareza: "S",
@@ -90,7 +90,7 @@ export const cartasNaruto: Carta[] = [
   {
     id: 104,
     nombre: "Madara Uchiha",
-    imagen: "https://u-mercari-images.mercdn.net/photos/m38030209152_1.jpg",
+    imagen: "https://i.pinimg.com/1200x/ed/fa/c4/edfac4403969b2ada33d7c73fb1e48be.jpg",
     descripcion: "Fundador de Konoha junto a Hashirama. Busca crear un mundo de ilusiones perfectas.",
     tipo: "Ninja",
     rareza: "SS",
@@ -116,7 +116,7 @@ export const cartasSoloLeveling:Carta[] = [
   {
     id: 202,
     nombre: "Cha Hae-In",
-    imagen: "https://i.pinimg.com/736x/b1/5b/31/b15b3190c784aaff3b8241d6e727640f.jpg",
+    imagen: "https://i.pinimg.com/1200x/df/7f/65/df7f65d4cb5dd14e85337ad40cbd9860.jpg",
     descripcion: "La cazadora de nivel S más fuerte de Corea y única persona que puede detectar el olor único de Jin-Woo. Desarrolla sentimientos por él a lo largo de la serie.",
     tipo: "Espadachín",
     rareza: "S",
@@ -128,7 +128,7 @@ export const cartasSoloLeveling:Carta[] = [
   {
     id: 203,
     nombre: "Thomas Andre",
-    imagen: "https://i.pinimg.com/564x/89/ae/18/89ae18254ec98807b319d1d83b649361.jpg",
+    imagen: "https://i.pinimg.com/736x/e4/38/a3/e438a36aa7709a3a1f507482572f6b74.jpg",
     descripcion: "Líder del gremio Scavenger y uno de los monarcas. Poseedor del poder de la bestia, conocido por su fuerza bruta y resistencia sobrehumana.",
     tipo: "Tanque",
     rareza: "S",
