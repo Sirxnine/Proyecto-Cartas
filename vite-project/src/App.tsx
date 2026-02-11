@@ -6,6 +6,7 @@ import { cartasEjemplo } from './componentes/CartasIniciales';
 import type { Carta } from './types/index';
 import { BsFeather } from "react-icons/bs";
 import FormularioCarta from './componentes/Form';
+import SplashCursor from './componentes/SplashCursor';
 
 function App() {
   const [cartas, setCartas] = useState<Carta[]>(cartasEjemplo);
@@ -35,7 +36,9 @@ function App() {
     setCartas([nueva, ...cartas]);
   };
   return (
+
     <div className="min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
+        <SplashCursor />
       {/* Fondo con textura sutil de escaneo */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
       
