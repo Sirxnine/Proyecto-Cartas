@@ -6,7 +6,6 @@ import { cartasEjemplo } from './componentes/CartasIniciales';
 import type { Carta } from './types/index';
 import { BsFeather } from "react-icons/bs";
 import FormularioCarta from './componentes/Form';
-import SplashCursor from './componentes/SplashCursor';
 
 function App() {
   const [cartas, setCartas] = useState<Carta[]>(cartasEjemplo);
@@ -38,7 +37,6 @@ function App() {
   return (
 
     <div className="min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
-        <SplashCursor />
       {/* Fondo con textura sutil de escaneo */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
       
@@ -60,7 +58,7 @@ function App() {
             <div className="h-px grow bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
           </div>
 
-          {/* Estado vacío con estilo Cyber */}
+          {/* Buscador */}
           {busqueda.trim() !== "" && cartasFiltradas.length === 0 && (
             <div className="text-center py-20 border-2 border-dashed border-white/5 rounded-[3rem] bg-white/2">
               <p className="text-cyan-400 text-2xl font-black italic tracking-tighter uppercase mb-2">
@@ -80,7 +78,7 @@ function App() {
             <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta} />
           </div>
 
-          {/* Modal Adaptado */}
+          {/* Modal */}
           <ModalCarta
             carta={cartaSeleccionada}
             isOpen={mostrarModal}
