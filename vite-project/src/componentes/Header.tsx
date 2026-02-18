@@ -1,7 +1,7 @@
 import type { HeaderProps } from '../types/index';
 import { BsFeather } from "react-icons/bs";
 
-function Header({ busqueda, setBusqueda }: HeaderProps) {
+function Header({ busqueda, setBusqueda,mostrarForm,setMostrarForm }: HeaderProps) {
   return (
     <header className="border-b border-white/10 bg-black/40 backdrop-blur-md sticky top-0 z-40">
       <div className="container mx-auto px-4 py-4">
@@ -24,6 +24,22 @@ function Header({ busqueda, setBusqueda }: HeaderProps) {
               <div className="h-1 w-full bg-linear-to-r from-cyan-500 to-transparent rounded-full opacity-50"></div>
             </div>
           </div>
+
+       <button
+        className={`
+        px-8 py-3 rounded-full font-black italic uppercase tracking-tighter 
+        transition-all duration-300 transform active:scale-95 border-2
+
+    ${mostrarForm 
+      ? 'bg-cyan-60 hover:bg-cyan-500 text-white shadow-[0_0_20px_rgba(255,255,255,0.4)]' 
+      : 'bg-black text-cyan-400 border-cyan-500/50 shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] hover:border-cyan-400'
+    }
+  `}
+  onClick={() => setMostrarForm(!mostrarForm)}
+>
+  {mostrarForm ? '✕ Cerrar' : '＋ Crear Carta'}
+</button>
+
 
           {/* Buscador Estilo Barra de Menú de Juego */}
           <div className="relative w-full md:w-96">

@@ -12,7 +12,7 @@ function App() {
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
-  
+  const [mostrarForm, setMostrarForm] = useState(false);
 
   const cartasFiltradas = useMemo(() => {
     return cartas.filter(carta =>
@@ -35,17 +35,16 @@ function App() {
     setCartas([nueva, ...cartas]);
   };
   return (
+    
+    <div className="relative flex flex-col min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
+          
 
-    <div className="min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
-      {/* Fondo con textura sutil de escaneo */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-      
-      {/* Luces de ambiente en las esquinas */}
       <div className="fixed -top-[10%] -left-[10%] w-[40%] h-[40%] bg-cyan-900/10 blur-[120px] rounded-full"></div>
       <div className="fixed -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full"></div>
 
       <div className="relative z-10">
-        <Header busqueda={busqueda} setBusqueda={setBusqueda} />
+        <Header busqueda={busqueda} setBusqueda={setBusqueda} mostrarForm={mostrarForm} setMostrarForm={setMostrarForm}/>
         
         <main className="container mx-auto px-4 py-10">
           
@@ -70,20 +69,18 @@ function App() {
             </div>
           )}
 
-          {/* Formulario para añadir nuevas cartas */}
-            <FormularioCarta onCrear={añadirCarta} />
-
-          {/* Lista de Cartas */}
-          <div className="animate-in fade-in duration-700">
-            <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta} />
-          </div>
-
           {/* Modal */}
           <ModalCarta
             carta={cartaSeleccionada}
             isOpen={mostrarModal}
             onClose={cerrarModal}
           />
+             {mostrarForm ? (
+          <FormularioCarta onCrear={añadirCarta} />
+          ): //Lista de Cartas
+          <div className="animate-in fade-in duration-700">
+            <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta} />
+          </div> }
         </main>
       </div>
     </div>

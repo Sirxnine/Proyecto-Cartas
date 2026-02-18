@@ -141,7 +141,7 @@ const FormularioCarta = ({onCrear}: {onCrear: (carta: any) => void}) => {
         {/* Botón */}
         <button 
           type="submit"
-          className="md:col-span-2 mt-4 bg-cyan-600 hover:bg-cyan-500 text-black font-black py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] uppercase italic tracking-tighter"
+          className="md:col-span-2 mt-40 bg-cyan-60 hover:bg-cyan-500 text-black font-black py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] uppercase italic tracking-tighter"
         >
           Registrar Carta
         </button>
