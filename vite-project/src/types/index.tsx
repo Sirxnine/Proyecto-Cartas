@@ -17,8 +17,6 @@ export type NuevaCarta = Omit<Carta, 'id'>;
 export interface HeaderProps {
   busqueda: string;
   setBusqueda: (valor: string) => void;
-  mostrarForm: boolean
-  setMostrarForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface CartaProps {

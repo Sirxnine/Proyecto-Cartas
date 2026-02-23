@@ -5,14 +5,12 @@ import ModalCarta from './componentes/ModalCarta';
 import { cartasEjemplo } from './componentes/CartasIniciales';
 import type { Carta } from './types/index';
 import { BsFeather } from "react-icons/bs";
-import FormularioCarta from './componentes/Form';
 
 function App() {
-  const [cartas, setCartas] = useState<Carta[]>(cartasEjemplo);
+  const [cartas] = useState<Carta[]>(cartasEjemplo);
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
-  const [mostrarForm, setMostrarForm] = useState(false);
 
   const cartasFiltradas = useMemo(() => {
     return cartas.filter(carta =>
@@ -31,9 +29,6 @@ function App() {
     setTimeout(() => setCartaSeleccionada(null), 300); 
   };
 
-  const añadirCarta = (nueva: Carta) => {
-    setCartas([nueva, ...cartas]);
-  };
   return (
     
     <div className="relative flex flex-col min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
@@ -44,7 +39,7 @@ function App() {
       <div className="fixed -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full"></div>
 
       <div className="relative z-10">
-        <Header busqueda={busqueda} setBusqueda={setBusqueda} mostrarForm={mostrarForm} setMostrarForm={setMostrarForm}/>
+        <Header busqueda={busqueda} setBusqueda={setBusqueda} />
         
         <main className="container mx-auto px-4 py-10">
           
@@ -75,12 +70,10 @@ function App() {
             isOpen={mostrarModal}
             onClose={cerrarModal}
           />
-             {mostrarForm ? (
-          <FormularioCarta onCrear={añadirCarta} />
-          ): //Lista de Cartas
+          {/* Lista de Cartas */}
           <div className="animate-in fade-in duration-700">
             <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta} />
-          </div> }
+          </div> 
         </main>
       </div>
     </div>
