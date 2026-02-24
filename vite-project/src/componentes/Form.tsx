@@ -1,155 +1,167 @@
 import { useState } from "react";
-import {RiAddLine, RiImageAddLine} from "react-icons/ri";
+import { RiAddLine, RiImageAddLine, RiTerminalLine, RiShieldLine, RiSwordLine, RiHistoryLine } from "react-icons/ri";
 import { BsFeather } from "react-icons/bs";
 
-const FormularioCarta = ({onCrear}: {onCrear: (carta: any) => void}) => {
-    const [formData, setFormData] = useState({
-        nombre: '',
-        tipo: '',
-        poder: 0,
-        defensa: 0,
-        habilidadUltimate: '',
-        descripcion: '',
-        imagen: ''
-    });
+const FormularioCarta = ({ onCrear }: { onCrear: (carta: any) => void }) => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    tipo: 'Luchador',
+    poder: 0,
+    defensa: 0,
+    habilidadUltimate: '',
+    descripcion: '',
+    imagen: ''
+  });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onCrear({...formData, id: Date.now()});
-        setFormData({
-            nombre: '',
-            tipo: '',
-            poder: 0,
-            defensa: 0,
-            habilidadUltimate: '',
-            descripcion: '',
-            imagen: ''
-        });
-    };
-    
-    return (
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onCrear({ ...formData, id: Date.now() });
+    setFormData({ nombre: '', tipo: 'Luchador', poder: 0, defensa: 0, habilidadUltimate: '', descripcion: '', imagen: '' });
+  };
 
-        <div className="max-w-2xl mx-auto bg-black/40 backdrop-blur-xl p-8 rounded-4x1 border border-white/10 shadow-2xl mb-12">
-            <div className="flex items-center gap-3 mb-8">
-                <RiAddLine className="text-cyan-400 text-3xl" />
-                <h2 className="text-2xl font-black italic text-white uppercase tracking-tighter">
-                Crear Nueva <span className="text-cyan-400">Carta <BsFeather /></span>
-                </h2>
-        </div>
+  return (
+    /* Fondo */
+    <div className="min-h-screen w-full relative flex items-center justify-center p-6 overflow-hidden bg-[#030303]">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
+      </div>
 
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        {/* Input Para el Nombre */}
-            <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Nombre</label>
-                <input
-                type="text"
-                required
-                placeholder = "Seiya"
-                value={formData.nombre} 
-                onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                className="bg-white/5 border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none transition-all italic"
-                />
-            </div>
-        {/* Input Para el Tipo */}
-            <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Tipo</label>
-                <select 
-                value={formData.tipo}
-                onChange = {(e) => setFormData({...formData, tipo: e.target.value})}
-                className="bg-[#1a1a1a] border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none transition-all"
-                >
-                    <option value="Luchador">Luchador</option>
-                    <option value="Estratega">Estratega</option>
-                    <option value="Mago">Mago</option>
-                    <option value="Ninja">Ninja</option>
-                    <option value="Dios">Dios</option>
-                    <option value="Tanque">Tanque</option>
-                    <option value="Caballero">Caballero</option>
-                    <option value="Espadachin">Espadachin</option>
-                    <option value="Monarca">Monarca</option>
-                    <option value="Hechicero">Hechicero</option>
-                    <option value="Invocador">Invocador</option>
-                    <option value="Maldicion">Maldicion</option>
-                    <option value="Saiyajin">Saiyajin</option>
-                    <option value="Pirata">Pirata</option>
-                    <option value="Heroe">Heroe</option>
-                </select>
-            </div>
-        {/* Input Para el Poder */}
-            <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Poder</label>
-                <input
-                type = "number"
-                required
-                placeholder = "1000"
-                value={formData.poder}
-                onChange={(e)=> setFormData({...formData, poder: Number(e.target.value)})}
-                className="bg-white/5 border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none" 
-                />
-            </div>
-        {/* Input Para la Defensa */}
-            <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Defensa</label>
-                <input
-                type = "number"
-                required
-                placeholder = "1000"
-                value={formData.defensa}
-                onChange={(e)=> setFormData({...formData, defensa: Number(e.target.value)})}
-                className="bg-white/5 border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none" 
-                />
-            </div>
-            {/* Input Para la Imagen */}
-            <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">URL de la Imagen</label>
-                <div className="relative">
-                <RiImageAddLine className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
-                <input
-                type="text"
-                placeholder="https://Batman.jpg"
-                value={formData.imagen}
-                onChange={(e) => setFormData({...formData, imagen: e.target.value})}
-                className="bg-white/5 border border-white/10 pl-10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none transition-all italic w-full"
-                />
-                </div>
-            </div>
-            {/* Input para la Ultimate */}
-        <div className="flex flex-col gap-2 md:col-span-2">
-          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Directiva Ultimate</label>
-          <textarea 
-            rows={2}
-            placeholder="Describe el ataque definitivo..."
-            value={formData.habilidadUltimate}
-            onChange={(e) => setFormData({...formData, habilidadUltimate: e.target.value})}
-            className="bg-white/5 border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none resize-none"
-          />
-        </div>
+      {/* Tarjeta del Form */}
+      <div className="relative z-10 w-full max-w-4xl bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
         
-        {/* Input para la Descripcion */}
-        <div className="flex flex-col gap-2 md:col-span-2">
-          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Descripción</label>
-          <textarea 
-            rows={2}
-            placeholder="Describe la carta..."
-            value={formData.descripcion}
-            onChange={(e) => setFormData({...formData, descripcion: e.target.value})}
-            className="bg-white/5 border border-white/10 p-3 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 outline-none resize-none"
-          />
-        </div>
+        {/* Adorno de esquina */}
+        <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-500/30 rounded-tl-[2.5rem] pointer-events-none" />
 
-        {/* Botón */}
-        <button 
-          type="submit"
-          className="md:col-span-2 mt-40 bg-cyan-60 hover:bg-cyan-500 text-white font-black py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] uppercase italic tracking-tighter"
-        >
-          Registrar Carta
-        </button>
-            </form>
-        </div>
-    )
+        <header className="mb-12 relative">
+          <div className="flex items-center gap-5 mb-4">
+            <div className="h-12 w-1.5 bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]" />
+            <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter text-white uppercase italic">
+              Crea tu <span className="text-cyan-400">Carta</span>
+            </h1>
+          </div>
+          <div className="flex items-center gap-4 text-white/40 font-mono text-[9px] tracking-[0.4em] uppercase">
+            <span>Protocolo: V-Series_01</span>
+            <span className="h-px w-20 bg-white/10" />
+            <span className="flex items-center gap-1 text-cyan-400/60"> <BsFeather /> Sistema Online</span>
+          </div>
+        </header>
 
-}
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+          
+          {/* Nombre */}
+          <div className="group space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400 transition-colors">Nombre de la Personaje</label>
+            <input
+              type="text" required placeholder="Ej: Pegasus Seiya"
+              value={formData.nombre}
+              onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 focus:bg-cyan-500/5 outline-none transition-all italic font-semibold shadow-inner"
+            />
+          </div>
+
+          {/* Tipo */}
+          <div className="group space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400 transition-colors">Tipo</label>
+            <div className="relative">
+              <select
+                value={formData.tipo}
+                onChange={(e) => setFormData({ ...formData, tipo: e.target.value })}
+                className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none transition-all cursor-pointer appearance-none"
+              >
+                <option value="Luchador">Luchador</option>
+                <option value="Estratega">Estratega</option>
+                <option value="Mago">Mago</option>
+                <option value="Ninja">Ninja</option>
+                <option value="Dios">Dios</option>
+                <option value="Tanque">Tanque</option>
+                <option value="Espadachin">Espadachin</option>
+              </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-cyan-500">▼</div>
+            </div>
+          </div>
+
+          {/* Ataque */}
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-gradient-to-br from-white/[0.02] to-transparent p-8 rounded-[2rem] border border-white/5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-2 opacity-10">
+              <RiTerminalLine size={80} />
+            </div>
+            
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center gap-2 text-red-500/80 font-black italic text-xs tracking-tighter uppercase">
+                <RiSwordLine /> Poder de Ataque
+              </div>
+              <input
+                type="number" required value={formData.poder}
+                onChange={(e) => setFormData({ ...formData, poder: Number(e.target.value) })}
+                className="w-full bg-black/60 border border-red-500/20 p-4 rounded-xl text-white text-2xl font-mono focus:border-red-500 transition-all"
+              />
+            </div>
+
+            {/* Defensa */}
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center gap-2 text-blue-500/80 font-black italic text-xs tracking-tighter uppercase">
+                <RiShieldLine /> Defensa 
+              </div>
+              <input
+                type="number" required value={formData.defensa}
+                onChange={(e) => setFormData({ ...formData, defensa: Number(e.target.value) })}
+                className="w-full bg-black/60 border border-blue-500/20 p-4 rounded-xl text-white text-2xl font-mono focus:border-blue-500 transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Imagen */}
+          <div className="md:col-span-2 group space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400">Visual Datasheet (URL)</label>
+            <div className="relative">
+              <RiImageAddLine className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-500/50 text-xl" />
+              <input
+                type="url" placeholder="https://..." value={formData.imagen}
+                onChange={(e) => setFormData({ ...formData, imagen: e.target.value })}
+                className="w-full bg-black/40 border border-white/10 pl-12 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Ulti */}
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"> <RiAddLine /> Ulti </label>
+            <textarea
+              rows={3} value={formData.habilidadUltimate}
+              onChange={(e) => setFormData({ ...formData, habilidadUltimate: e.target.value })}
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none resize-none"
+            />
+          </div>
+
+            {/* Descripción / Lore */}
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"> <RiHistoryLine /> Lore / Descripción</label>
+            <textarea
+              rows={3} value={formData.descripcion}
+              onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none resize-none"
+            />
+          </div>
+
+          {/* Boton de Crear */}
+          <div className="md:col-span-2 pt-6">
+            <button
+              type="submit"
+              className="group relative w-full bg-cyan-500 hover:bg-cyan-400 py-6 rounded-2xl transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.25)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
+                Crear Carta <RiAddLine className="text-2xl" />
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default FormularioCarta;
-

@@ -7,7 +7,7 @@ import type { Carta } from './types/index';
 import { BsFeather } from "react-icons/bs";
 
 function App() {
-  const [cartas] = useState<Carta[]>(cartasEjemplo);
+  const [cartas, setCartas] = useState<Carta[]>(cartasEjemplo);
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
@@ -27,6 +27,10 @@ function App() {
   const cerrarModal = () => {
     setMostrarModal(false);
     setTimeout(() => setCartaSeleccionada(null), 300); 
+  };
+
+   const añadirCarta = (nueva: Carta) => {
+    setCartas([nueva, ...cartas]);
   };
 
   return (
@@ -72,7 +76,7 @@ function App() {
           />
           {/* Lista de Cartas */}
           <div className="animate-in fade-in duration-700">
-            <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta} />
+            <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta}  />
           </div> 
         </main>
       </div>
