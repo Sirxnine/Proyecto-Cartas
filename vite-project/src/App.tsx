@@ -29,9 +29,13 @@ function App() {
     setTimeout(() => setCartaSeleccionada(null), 300); 
   };
 
-   const añadirCarta = (nueva: Carta) => {
+    const añadirCarta = (nueva: Carta) => {
     setCartas([nueva, ...cartas]);
   };
+
+  const eliminarCarta = (id: number) => {
+  setCartas(cartas.filter(c => c.id !== id));
+};
 
   return (
     
@@ -76,7 +80,10 @@ function App() {
           />
           {/* Lista de Cartas */}
           <div className="animate-in fade-in duration-700">
-            <ListaCartas cartas={cartasFiltradas} onCartaClick={abrirModalCarta}  />
+            <ListaCartas 
+            cartas={cartasFiltradas} 
+            onCartaClick={abrirModalCarta}  
+            onEliminarCarta={eliminarCarta}/>
           </div> 
         </main>
       </div>

@@ -26,11 +26,11 @@ const FormularioCarta = ({ onCrear }: { onCrear: (carta: any) => void }) => {
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
       {/* Tarjeta del Form */}
-      <div className="relative z-10 w-full max-w-4xl bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
+      <div className="relative z-10 w-full max-w-4xl bg-white/3 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
         
         {/* Adorno de esquina */}
         <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-500/30 rounded-tl-[2.5rem] pointer-events-none" />
@@ -84,7 +84,7 @@ const FormularioCarta = ({ onCrear }: { onCrear: (carta: any) => void }) => {
           </div>
 
           {/* Ataque */}
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-gradient-to-br from-white/[0.02] to-transparent p-8 rounded-[2rem] border border-white/5 relative overflow-hidden">
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-linear-to-br from-white/2 to-transparent p-8 rounded-4x1 border border-white/5 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-2 opacity-10">
               <RiTerminalLine size={80} />
             </div>
@@ -115,7 +115,7 @@ const FormularioCarta = ({ onCrear }: { onCrear: (carta: any) => void }) => {
 
           {/* Imagen */}
           <div className="md:col-span-2 group space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400">Visual Datasheet (URL)</label>
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400"> URL de la Imagen </label>
             <div className="relative">
               <RiImageAddLine className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-500/50 text-xl" />
               <input
@@ -152,7 +152,7 @@ const FormularioCarta = ({ onCrear }: { onCrear: (carta: any) => void }) => {
               type="submit"
               className="group relative w-full bg-cyan-500 hover:bg-cyan-400 py-6 rounded-2xl transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.25)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
                 Crear Carta <RiAddLine className="text-2xl" />
               </span>

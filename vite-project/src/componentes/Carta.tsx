@@ -1,12 +1,28 @@
 import type { CartaProps } from '../types/index';
 import { BsFeather } from "react-icons/bs";
+import { RiCloseLine } from "react-icons/ri";
 
-function Carta({ carta, onClick }: CartaProps) {
+function Carta({ carta, onClick, onEliminar }: CartaProps & { onEliminar: (id: number) => void }) {
   // Logica de datos
   const psValue = Math.floor(carta.defensa / 10);
   const damageValue = Math.floor(carta.poder / 50);
 
-  return (
+ return (
+    <div className="group relative w-full aspect-[1/1.4]">
+      
+      {/* BOTÓN DE BORRADO */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation(); 
+          onEliminar(carta.id);
+        }}
+        className="absolute -top-2 -right-2 z-30 p-1.5 bg-red-600 text-white rounded-full 
+                   shadow-[0_0_15px_rgba(220,38,38,0.5)] border-2 border-[#1a1a1a]
+                   opacity-0 group-hover:opacity-100 transition-all duration-300 
+                   hover:scale-110 hover:bg-red-500 active:scale-90"
+      >
+        <RiCloseLine size={18} />
+      </button>
     <button
       onClick={() => onClick(carta)}
       className="group relative w-full aspect-[1/1.4] rounded-3xl p-1 bg-[#1a1a1a] border border-white/10 
@@ -70,6 +86,7 @@ function Carta({ carta, onClick }: CartaProps) {
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-linear-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </div>
     </button>
+    </div>
   );
 
 }
