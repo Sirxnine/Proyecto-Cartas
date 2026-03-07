@@ -37,3 +37,51 @@ export interface ModalCartaProps {
   onClose: () => void;
 }
 
+export interface IApiCard        {
+            "idCard": string,
+            "name": string,
+            "description": string,
+            "attack": number,
+            "defense": number,
+            "lifePoints": number,
+            "pictureUrl": string,
+            "attributes": {
+                  tipo?: string;
+                  habilidadUltimate?: string;
+                  anime?: string; 
+            },
+            "userSecret": string,
+            "createdAt": string,
+            "updatedAt": null | string 
+        }
+
+export const toApiCardMapper = (card:Carta): IApiCard =>({
+  idCard:card.id.toString(),
+  name:card.nombre,
+  description:card.descripcion,
+  attack:card.poder,
+  defense:card.defensa,
+  lifePoints:card.hp,
+  pictureUrl:card.imagen,
+  attributes: {
+    tipo: card.tipo,
+    habilidadUltimate: card.habilidadUltimate,
+    anime: card.anime
+  },
+  userSecret:"Leon422088LA", 
+  createdAt: new Date().toISOString(),
+  updatedAt: null
+})
+
+export const toCardApiMapper = (apiCard:IApiCard): Carta => ({
+  id: parseInt(apiCard.idCard),
+  nombre: apiCard.name,
+  descripcion: apiCard.description,
+  poder: apiCard.attack,
+  defensa: apiCard.defense,
+  hp: apiCard.lifePoints,
+  imagen: apiCard.pictureUrl,
+  tipo: apiCard.attributes.tipo || '',
+  habilidadUltimate: apiCard.attributes.habilidadUltimate || '',
+  anime: apiCard.attributes.anime || ''
+});

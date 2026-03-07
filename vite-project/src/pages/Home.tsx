@@ -76,7 +76,9 @@ const Home = ({cartas, añadirCarta, eliminarCarta}:{cartas: Carta[],añadirCart
             onCartaClick={abrirModalCarta}  
             onEliminarCarta={eliminarCarta}
             onAñadirCarta={añadirCarta} />
+            
           </div> 
+          
         </main>
       </div>
     </div>)

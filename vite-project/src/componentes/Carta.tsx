@@ -8,7 +8,6 @@ interface CartaProps {
 }
 
 function Carta({ carta, onClick, onEliminar }: CartaProps) {
-  // Si hp es undefined, mostrará 0 en lugar de espacio vacío
   const puntosVida = carta.hp || 0;
 
   return (
