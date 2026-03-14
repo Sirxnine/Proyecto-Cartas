@@ -46,7 +46,7 @@ function App() {
   };
 
   useEffect(() => {
- 
+
   }, []);
 
   const addCarta = async (carta: Carta) => {

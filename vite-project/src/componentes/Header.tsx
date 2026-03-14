@@ -28,8 +28,8 @@ function Header({ busqueda, setBusqueda }: HeaderProps) {
 
 
        { /* Boton para mostrar el form */}
-       <Link to="/Form">
-       <button
+      <Link to="/Form">
+      <button
         className="
         px-8 py-3 rounded-full font-black italic uppercase tracking-tighter 
         transition-all duration-300 transform active:scale-95 border-2 cursor-pointer bg-linear-to-r from-cyan-500 to-blue-500 text-white shadow-lg hover:shadow-xl "
