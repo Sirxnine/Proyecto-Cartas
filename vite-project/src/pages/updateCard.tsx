@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { RiAddLine, RiImageAddLine, RiShieldLine, RiSwordLine, RiHistoryLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router";
+import { RiSaveLine, RiImageAddLine, RiShieldLine, RiSwordLine, RiHistoryLine, RiArrowLeftLine, RiFocus3Line } from "react-icons/ri";
 import { BsFeather } from "react-icons/bs";
-import { useNavigate } from 'react-router';
+import { cartasEjemplo } from "../componentes/CartasIniciales"; // Importamos tus datos locales por ahora
+import type { Carta } from "../types";
 
-const FormularioCarta = ({ onCrear, carta }: { onCrear: (carta: any) => void }) => {
+const EditarCarta = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
+  // Estado para el formulario
   const [formData, setFormData] = useState({
     nombre: '',
     tipo: 'Luchador',
@@ -15,167 +21,161 @@ const FormularioCarta = ({ onCrear, carta }: { onCrear: (carta: any) => void }) 
     hp: 0
   });
 
+  // Efecto para buscar la carta por ID al cargar
+  useEffect(() => {
+    // Buscamos en tus cartas locales usando el ID de la URL
+    const cartaEncontrada = cartasEjemplo.find(c => c.id === Number(id));
+    
+    if (cartaEncontrada) {
+      setFormData({
+        nombre: cartaEncontrada.nombre,
+        tipo: cartaEncontrada.tipo,
+        poder: cartaEncontrada.poder,
+        defensa: cartaEncontrada.defensa,
+        habilidadUltimate: cartaEncontrada.habilidadUltimate,
+        descripcion: cartaEncontrada.descripcion,
+        imagen: cartaEncontrada.imagen,
+        hp: cartaEncontrada.hp
+      });
+    }
+  }, [id]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onCrear({ ...formData, id: Date.now() });
-    setFormData({ nombre: '', tipo: 'Luchador', poder: 0, defensa: 0, habilidadUltimate: '', descripcion: '', imagen: '', hp: 0 });
+    // Aquí iría tu lógica de guardado (por ahora solo redirigimos)
+    console.log("Actualizando carta con ID:", id, formData);
     navigate('/');
   };
 
-  const navigate = useNavigate();
-
   return (
-    /* Fondo */
     <div className="min-h-screen w-full relative flex items-center justify-center p-6 overflow-hidden bg-[#030303]">
+      {/* Fondo Ambientado */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-size-[40px_40px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-600/10 blur-[120px] rounded-full" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      {/* Tarjeta del Form */}
-      <div className="relative z-10 w-full max-w-4xl bg-white/3 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
-
-        {/* Adorno de esquina */}
-        <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-500/30 rounded-tl-[2.5rem] pointer-events-none" />
-
-        <header className="mb-12 relative">
-          <div className="flex items-center gap-5 mb-4">
-            <div className="h-12 w-1.5 bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]" />
-            <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter text-white uppercase italic">
-              Crea tu <span className="text-cyan-400">Carta</span>
-            </h1>
+      <div className="relative z-10 w-full max-w-4xl bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-2xl">
+        
+        {/* Header de Edición */}
+        <header className="mb-12 relative flex justify-between items-start">
+          <div>
+            <div className="flex items-center gap-5 mb-4">
+              <div className="h-12 w-1.5 bg-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
+              <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter text-white uppercase leading-none">
+                Editar <span className="text-amber-400">Carta</span>
+              </h1>
+            </div>
+            <div className="flex items-center gap-4 text-white/40 font-mono text-[9px] tracking-[0.4em] uppercase">
+              <span className="flex items-center gap-1 text-amber-500/60"> <BsFeather /> ID de Registro: {id}</span>
+              <span className="h-px w-20 bg-white/10" />
+              <span>Modo: Local_Override</span>
+            </div>
           </div>
-          <div className="flex items-center gap-4 text-white/40 font-mono text-[9px] tracking-[0.4em] uppercase">
-            <span>Protocolo: V-Series_01</span>
-            <span className="h-px w-20 bg-white/10" />
-            <span className="flex items-center gap-1 text-cyan-400/60"> <BsFeather /> Sistema Online</span>
-          </div>
+          
+          <button 
+            onClick={() => navigate('/')}
+            className="group flex items-center gap-2 text-white/40 hover:text-white transition-colors font-black uppercase text-[10px] tracking-widest"
+          >
+            <RiArrowLeftLine className="group-hover:-translate-x-1 transition-transform" /> Volver al Mazo
+          </button>
         </header>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-
+          
           {/* Nombre */}
-          <div className="group space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400 transition-colors">Nombre de la Personaje</label>
-            <input
-              type="text" required placeholder="Ej: Pegasus Seiya"
-              value={formData.nombre}
-              onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 focus:bg-cyan-500/5 outline-none transition-all italic font-semibold shadow-inner"
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest">Nombre del Personaje</label>
+            <input 
+              type="text" 
+              value={formData.nombre} 
+              onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-amber-500/50 outline-none transition-all font-semibold italic" 
             />
           </div>
 
           {/* Tipo */}
-          <div className="group space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400 transition-colors">Tipo</label>
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest">Tipo de Unidad</label>
             <div className="relative">
-              <select
-                value={formData.tipo}
-                onChange={(e) => setFormData({ ...formData, tipo: e.target.value })}
-                className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none transition-all cursor-pointer appearance-none"
+              <select 
+                value={formData.tipo} 
+                onChange={(e) => setFormData({...formData, tipo: e.target.value})}
+                className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white outline-none appearance-none cursor-pointer"
               >
                 <option value="Luchador">Luchador</option>
                 <option value="Estratega">Estratega</option>
                 <option value="Mago">Mago</option>
                 <option value="Ninja">Ninja</option>
-                <option value="Dios">Dios</option>
                 <option value="Tanque">Tanque</option>
-                <option value="Espadachin">Espadachin</option>
               </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-cyan-500">▼</div>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-amber-500 text-xs">▼</div>
             </div>
           </div>
 
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6 bg-linear-to-br from-white/2 to-transparent p-8 rounded-4xl border border-white/5 relative overflow-hidden">
-
-            {/* Input HP */}
-            <div className="space-y-3 relative z-10">
-              <div className="flex items-center gap-2 text-green-500/80 font-black italic text-xs tracking-tighter uppercase">
-                <RiShieldLine /> Vitalidad (HP)
-              </div>
-              <input
-                type="number" required value={formData.hp}
-                onChange={(e) => setFormData({ ...formData, hp: Number(e.target.value) })}
-                className="w-full bg-black/60 border border-green-500/20 p-4 rounded-xl text-white text-2xl font-mono focus:border-green-500 transition-all outline-none"
-              />
+          {/* Stats Box */}
+          <div className="md:col-span-2 grid grid-cols-3 gap-6 bg-white/2 p-8 rounded-4xl border border-white/5">
+            <div className="space-y-2">
+                <label className="text-[10px] font-black text-green-500/60 uppercase flex items-center gap-1"><RiShieldLine/> Vitalidad</label>
+                <input type="number" value={formData.hp} onChange={(e)=>setFormData({...formData, hp: +e.target.value})} className="w-full bg-black/60 p-4 rounded-xl text-white text-2xl font-mono text-center outline-none border border-white/5 focus:border-green-500" />
             </div>
-
-            {/* Input Ataque */}
-            <div className="space-y-3 relative z-10">
-              <div className="flex items-center gap-2 text-red-500/80 font-black italic text-xs tracking-tighter uppercase">
-                <RiSwordLine /> Ataque
-              </div>
-              <input
-                type="number" required value={formData.poder}
-                onChange={(e) => setFormData({ ...formData, poder: Number(e.target.value) })}
-                className="w-full bg-black/60 border border-red-500/20 p-4 rounded-xl text-white text-2xl font-mono focus:border-red-500 transition-all outline-none"
-              />
+            <div className="space-y-2">
+                <label className="text-[10px] font-black text-red-500/60 uppercase flex items-center gap-1"><RiSwordLine/> Poder</label>
+                <input type="number" value={formData.poder} onChange={(e)=>setFormData({...formData, poder: +e.target.value})} className="w-full bg-black/60 p-4 rounded-xl text-white text-2xl font-mono text-center outline-none border border-white/5 focus:border-red-500" />
             </div>
-
-            {/* Input Defensa */}
-            <div className="space-y-3 relative z-10">
-              <div className="flex items-center gap-2 text-blue-500/80 font-black italic text-xs tracking-tighter uppercase">
-                <RiShieldLine /> Defensa
-              </div>
-              <input
-                type="number" required value={formData.defensa}
-                onChange={(e) => setFormData({ ...formData, defensa: Number(e.target.value) })}
-                className="w-full bg-black/60 border border-blue-500/20 p-4 rounded-xl text-white text-2xl font-mono focus:border-blue-500 transition-all outline-none"
-              />
+            <div className="space-y-2">
+                <label className="text-[10px] font-black text-blue-500/60 uppercase flex items-center gap-1"><RiShieldLine/> Defensa</label>
+                <input type="number" value={formData.defensa} onChange={(e)=>setFormData({...formData, defensa: +e.target.value})} className="w-full bg-black/60 p-4 rounded-xl text-white text-2xl font-mono text-center outline-none border border-white/5 focus:border-blue-500" />
             </div>
           </div>
 
-          {/* Imagen */}
-          <div className="md:col-span-2 group space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400"> URL de la Imagen </label>
-            <div className="relative">
-              <RiImageAddLine className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-500/50 text-xl" />
-              <input
-                type="url" placeholder="https://..." value={formData.imagen}
-                onChange={(e) => setFormData({ ...formData, imagen: e.target.value })}
-                className="w-full bg-black/40 border border-white/10 pl-12 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Ulti */}
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"> <RiAddLine /> Ulti </label>
-            <textarea
-              rows={3} value={formData.habilidadUltimate}
-              onChange={(e) => setFormData({ ...formData, habilidadUltimate: e.target.value })}
-              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none resize-none"
+          {/* URL Imagen */}
+          <div className="md:col-span-2 space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"><RiImageAddLine className="text-amber-500"/> URL del Arte Visual</label>
+            <input 
+              type="url" 
+              value={formData.imagen} 
+              onChange={(e)=>setFormData({...formData, imagen: e.target.value})} 
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white outline-none focus:border-amber-500/50 transition-all font-mono text-sm" 
             />
           </div>
 
-          {/* Descripción / Lore */}
+          {/* Habilidad Ultimate */}
           <div className="space-y-2">
-            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"> <RiHistoryLine /> Lore / Descripción</label>
-            <textarea
-              rows={3} value={formData.descripcion}
-              onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
-              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white focus:border-cyan-500/50 outline-none resize-none"
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"><RiFocus3Line className="text-amber-500"/> Habilidad Especial</label>
+            <textarea 
+              rows={3} 
+              value={formData.habilidadUltimate} 
+              onChange={(e)=>setFormData({...formData, habilidadUltimate: e.target.value})} 
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white outline-none resize-none focus:border-amber-500/50" 
             />
           </div>
 
-          {/* Boton de Crear */}
-          <div className="md:col-span-2 pt-6">
-            <button
-              type="submit"
-              className="group relative w-full bg-cyan-500 hover:bg-cyan-400 py-6 rounded-2xl transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.25)]"
-            >
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
-                Crear Carta <RiAddLine className="text-2xl" />
-              </span>
-            </button>
+          {/* Descripción */}
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2"><RiHistoryLine className="text-amber-500"/> Historia / Lore</label>
+            <textarea 
+              rows={3} 
+              value={formData.descripcion} 
+              onChange={(e)=>setFormData({...formData, descripcion: e.target.value})} 
+              className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white outline-none resize-none focus:border-amber-500/50" 
+            />
           </div>
+
+          {/* Botón Guardar */}
+          <button 
+            type="submit" 
+            className="md:col-span-2 group relative w-full bg-amber-500 py-6 rounded-2xl transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.2)]"
+          >
+            <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
+              Guardar Cambios <RiSaveLine size={24} />
+            </span>
+          </button>
         </form>
       </div>
     </div>
   );
 };
 
-export default FormularioCarta;
+export default EditarCarta;

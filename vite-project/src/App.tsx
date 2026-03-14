@@ -4,7 +4,7 @@ import { toApiCardMapper, toCardApiMapper, type Carta, type IApiCard } from './t
 import { Route, Routes } from 'react-router';
 import FormularioCarta from './pages/Form';
 import Home from './pages/Home';
-import { TiPen } from 'react-icons/ti';
+import EditarCarta from './pages/updateCard';
 
 const API_URL = import.meta.env.VITE_EDUCA_API_URL
 
@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
  
-  }, []);
+  }, [fetch]);
 
   const addCarta = async (carta: Carta) => {
         try {
@@ -79,6 +79,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home añadirCarta={addCarta} eliminarCarta={deleteCarta} cartas={cartas} />} />
       <Route path='/Form' element={<FormularioCarta onCrear={addCarta} />} />
+      
     </Routes>
   
   );
