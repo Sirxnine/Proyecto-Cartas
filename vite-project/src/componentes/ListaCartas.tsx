@@ -1,7 +1,12 @@
 import type { ListaCartasProps } from '../types/index';
 import Carta from './Carta';
+import { RiLoader4Line } from 'react-icons/ri';
 
-function ListaCartas({ cartas, onCartaClick, onEliminarCarta }: ListaCartasProps) {
+interface Props extends ListaCartasProps {
+  loadingDelete?: boolean;
+}
+
+function ListaCartas({ cartas, onCartaClick, onEliminarCarta, loadingDelete }: Props) {
   if (cartas.length === 0) {
     return null; 
   }
@@ -14,6 +19,7 @@ function ListaCartas({ cartas, onCartaClick, onEliminarCarta }: ListaCartasProps
           carta={carta}
           onClick={onCartaClick}
           onEliminar={onEliminarCarta}
+          isDeleting={loadingDelete} // Indicamos si hay una eliminación en curso
         />
       ))}
     </div>

@@ -1,19 +1,16 @@
 export interface Carta {
   id: number;
-  defensa: number;
   nombre: string;
-  imagen: string;
-  descripcion: string;
   poder: number;
-  attributes: {
-  tipo: string;
-  habilidadUltimate: string; 
-  }
+  defensa: number;
   hp: number;
+  descripcion: string;
+  imagen: string;
+  tipo: string; // Cambiado: ahora está directamente en Carta
+  habilidadUltimate: string; // Cambiado: ahora está directamente en Carta
+  anime?: string; // Opcional para las cartas de ejemplo
 }
-
 export type NuevaCarta = Omit<Carta, 'id'>;
-
 
 export interface HeaderProps {
   busqueda: string;
@@ -23,14 +20,14 @@ export interface HeaderProps {
 export interface CartaProps {
   carta: Carta;
   onClick: (carta: Carta) => void;
+  onEliminar: (id: number) => void;
 }
 
 export interface ListaCartasProps {
   cartas: Carta[];
   onCartaClick: (carta: Carta) => void;
-  onEliminarCarta: (id: number) => void
+  onEliminarCarta: (id: number) => void;
   onAñadirCarta: (carta: Carta) => void;
-  onGuardar: (carta: Carta) => Promise<void>;
 }
 
 export interface ModalCartaProps {
@@ -39,42 +36,40 @@ export interface ModalCartaProps {
   onClose: () => void;
 }
 
-export interface IApiCard        {
-            "idCard": string,
-            "name": string,
-            "description": string,
-            "attack": number,
-            "defense": number,
-            "lifePoints": number,
-            "pictureUrl": string,
-            "attributes": {
-                  tipo?: string;
-                  habilidadUltimate?: string;
-                  anime?: string; 
-            },
-            "userSecret": string,
-            "createdAt": string,
-            "updatedAt": null | string 
-        }
-
-export const toApiCardMapper = (card:Carta): IApiCard =>({
-  idCard:card.id.toString(),
-  name:card.nombre,
-  description:card.descripcion,
-  attack:card.poder,
-  defense:card.defensa,
-  lifePoints:card.hp,
-  pictureUrl:card.imagen,
+export interface IApiCard {
+  idCard: string;
+  name: string;
+  description: string;
+  attack: number;
+  defense: number;
+  lifePoints: number;
+  pictureUrl: string;
   attributes: {
-    tipo: card.attributes.tipo,
-    habilidadUltimate: card.attributes.habilidadUltimate,
-  },
-  userSecret:"Leon422088LA", 
-  createdAt: new Date().toISOString(),
-  updatedAt: null
-})
+    tipo?: string;
+    habilidadUltimate?: string;
+    anime?: string;
+  };
+  userSecret: string;
+  createdAt: string;
+  updatedAt: null | string;
+}
 
-export const toCardApiMapper = (apiCard:IApiCard): Carta => ({
+export const toApiCardMapper = (carta: Carta) => {
+  return {
+    name: carta.nombre,
+    description: carta.descripcion,
+    pictureUrl: carta.imagen || "https://via.placeholder.com/150",
+    lifePoints: Number(carta.hp),
+    attack: Number(carta.poder),
+    defense: Number(carta.defensa),
+    attributes: {
+      tipo: carta.tipo || "Luchador",
+      habilidadUltimate: carta.habilidadUltimate || ""
+    }
+  };
+};
+
+export const toCardApiMapper = (apiCard: IApiCard): Carta => ({
   id: parseInt(apiCard.idCard),
   nombre: apiCard.name,
   descripcion: apiCard.description,
@@ -82,8 +77,6 @@ export const toCardApiMapper = (apiCard:IApiCard): Carta => ({
   defensa: apiCard.defense,
   hp: apiCard.lifePoints,
   imagen: apiCard.pictureUrl,
-  attributes: {
-    tipo: apiCard.attributes.tipo || '',
-    habilidadUltimate: apiCard.attributes.habilidadUltimate || ''
-  }
+  tipo: apiCard.attributes?.tipo || 'Luchador',
+  habilidadUltimate: apiCard.attributes?.habilidadUltimate || ''
 });
