@@ -25,10 +25,8 @@ export const cartasGOH: Carta[] = [
     habilidadUltimate: "Sabiduría del Sabio: Gravedad - Aplasta al oponente aumentando la presión atmosférica a niveles planetarios",
     anime: "GOH"
   },
-  // ... (el resto de cartasGOH igual pero con tipo y habilidadUltimate directamente)
 ];
 
-// ... (todos los demás arrays de cartas con la misma estructura)
 
 export const cartasEjemplo: Carta[] = [
   ...cartasGOH,

@@ -42,7 +42,6 @@ const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
 
   return (
     <div className="relative flex flex-col min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
-      {/* ... efectos de fondo ... */}
 
       <div className="relative z-10">
         <Header busqueda={busqueda} setBusqueda={setBusqueda} />
@@ -97,7 +96,7 @@ const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
                   onCartaClick={abrirModalCarta}  
                   onEliminarCarta={eliminarCarta}
                   onAñadirCarta={añadirCarta} 
-                  loadingDelete={loading.delete} // Pasamos estado de eliminación
+                  loadingDelete={loading.delete} 
                 />
               </div>
             </>

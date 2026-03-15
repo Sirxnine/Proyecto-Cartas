@@ -13,11 +13,8 @@ import {
 import { BsFeather } from "react-icons/bs";
 import { useNavigate, useParams } from 'react-router';
 import type { Carta } from "../types";
+import type { EditarCartaProps } from "../types/index";
 
-interface EditarCartaProps {
-  onGuardar: (carta: Carta) => Promise<{ success: boolean; error?: any }>;
-  loading?: boolean;
-}
 
 const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
   const { id } = useParams();
@@ -261,7 +258,7 @@ const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-600/10 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orange-600/10 blur-[120px] rounded-full" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
       {/* Tarjeta del Formulario */}
@@ -290,7 +287,7 @@ const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
         {/* Mensaje de error */}
         {error && (
           <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-3">
-            <RiErrorWarningLine className="text-red-500 text-xl flex-shrink-0" />
+            <RiErrorWarningLine className="text-red-500 text-xl shrink-0" />
             <p className="text-red-400 text-sm font-mono">{error}</p>
           </div>
         )}

@@ -19,7 +19,7 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 overflow-hidden">
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 overflow-hidden">
       
       {/* Fondo con cartas desplegadas - EFECTO ORIGINAL */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm">
@@ -27,7 +27,7 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-48 h-64 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl border border-white/10"
+              className="absolute w-48 h-64 bg-linear-to-br from-white/5 to-white/10 rounded-2xl border border-white/10"
               style={{
                 top: `${20 + i * 8}%`,
                 left: `${10 + i * 5}%`,
@@ -40,47 +40,50 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
         </div>
       </div>
       
-      {/* Botón de Cerrar - ESTILO ORIGINAL (rojo) */}
+      {/* Botón de Cerrar */}
       <button 
         onClick={onClose} 
-        className="absolute top-8 right-8 z-[150] bg-red-600 hover:bg-red-500 text-white p-3 rounded-full transition-all border border-white/20 shadow-lg"
+        className="absolute top-8 right-8 z-150 bg-red-600 hover:bg-red-500 text-white p-3 rounded-full transition-all border border-white/20 shadow-lg"
       >
         <RiCloseLine size={24} />
       </button>
 
-      {/* Botón de Editar - ESTILO ORIGINAL (ámbar con texto negro) */}
+      {/* Botón de Editar*/}
       <button 
         onClick={handleEditClick}
-        className="absolute top-8 left-8 z-[150] bg-amber-500 hover:bg-amber-400 text-black px-6 py-3 rounded-full transition-all border border-black/20 shadow-lg flex items-center gap-2 font-black uppercase italic text-xs tracking-widest"
+        className="absolute top-8 left-8 z-150 bg-amber-500 hover:bg-amber-400 text-black px-6 py-3 rounded-full transition-all border border-black/20 shadow-lg flex items-center gap-2 font-black uppercase italic text-xs tracking-widest"
       >
         <RiEditLine size={18} /> Editar Registro
       </button>
 
       {/* Modal principal */}
-      <div className="relative z-10 w-full max-w-[460px] aspect-[1/1.4] bg-black rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col">
+      <div className="relative z-10 w-full max-w-150 aspect-[1/1.4] bg-black rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col">
         
-        {/* IMAGEN FULL ART - ESTILO ORIGINAL */}
+        {/* Imagen */}
         <div className="absolute inset-0 z-0">
           <img 
             src={carta.imagen} 
             className="w-full h-full object-cover object-top" 
             alt={carta.nombre} 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-black/20" />
         </div>
 
-        {/* CONTENIDO - ESTILO ORIGINAL con tipografía gruesa y colores vibrantes */}
+        {/* Contenido */}
         <div className="relative z-10 p-8 flex justify-between items-start">
           <h2 className="text-4xl font-black text-white italic uppercase tracking-tighter leading-none">
-            {carta.nombre} <span className="text-xl font-bold opacity-60">V</span>
+            {carta.nombre} <span className="text-xl font-bold opacity-60"></span>
+          <div className=" flex bg-cyan-600/20 backdrop-blur-sm border border-cyan-500/30 px-3 py-1 rounded-full text-white text-2xl w-max mx-5 mb-4">
+              {carta.tipo}
+        </div>
           </h2>
           <div className="text-right">
             <span className="text-white/40 text-[9px] font-black block tracking-widest uppercase">Puntos Salud</span>
             <span className="text-4xl font-black text-white italic tabular-nums">{carta.hp}</span>
           </div>
-        </div>
+          </div>
 
-        {/* Footer - ESTILO ORIGINAL con colores vibrantes */}
+        {/* Footer */}
         <div className="relative z-10 mt-auto p-8 space-y-5">
           <div className="flex gap-3">
             <div className="flex-1 bg-red-600/10 backdrop-blur-md border border-red-500/30 p-3 rounded-xl flex items-center justify-between text-white">

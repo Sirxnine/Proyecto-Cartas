@@ -93,3 +93,8 @@ export const toCardApiMapper = (apiCard: IApiCard): Carta => ({
   tipo: apiCard.attributes?.tipo || 'Luchador',
   habilidadUltimate: apiCard.attributes?.habilidadUltimate || ''
 });
+
+export interface EditarCartaProps {
+  onGuardar: (carta: Carta) => Promise<{ success: boolean; error?: any }>;
+  loading?: boolean;
+}

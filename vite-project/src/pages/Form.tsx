@@ -80,9 +80,8 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
       return;
     }
 
-    // Creamos el objeto con la estructura correcta
     const nuevaCarta: Carta = {
-      id: Date.now(), // ID temporal (la API asignará uno real)
+      id: Date.now(), 
       nombre: formData.nombre.trim(),
       poder: Number(formData.poder),
       defensa: Number(formData.defensa),
@@ -115,7 +114,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
     navigate('/');
   };
 
-  // Si la creación fue exitosa, mostramos mensaje de éxito
+  // Si la carta se creó exitosamente, mostrar mensaje de éxito
   if (success) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-[#030303]">
@@ -137,7 +136,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
       {/* Tarjeta del Formulario */}
@@ -166,7 +165,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
         {/* Mensaje de error */}
         {error && (
           <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-3">
-            <RiErrorWarningLine className="text-red-500 text-xl flex-shrink-0" />
+            <RiErrorWarningLine className="text-red-500 text-xl shrink-0" />
             <p className="text-red-400 text-sm font-mono">{error}</p>
           </div>
         )}
@@ -221,7 +220,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
             </div>
           </div>
 
-          {/* Anime (opcional) - lo dejamos para futura expansión */}
+          {/* Anime (opcional) */}
           <div className="group space-y-2">
             <label className="text-[10px] font-black text-white/40 uppercase tracking-widest group-focus-within:text-cyan-400 transition-colors">
               Anime / Saga (opcional)
@@ -235,7 +234,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
             />
           </div>
 
-          {/* Stats Grid */}
+          {/* Stats */}
           <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6 bg-linear-to-br from-white/2 to-transparent p-8 rounded-4xl border border-white/5 relative overflow-hidden">
             
             {/* HP */}
@@ -315,7 +314,7 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
             </p>
           </div>
 
-          {/* Habilidad Ultimate */}
+          {/* Ultimate */}
           <div className="space-y-2">
             <label className="text-[10px] font-black text-white/40 uppercase tracking-widest flex items-center gap-2">
               <RiAddLine /> Habilidad Ultimate <span className="text-red-500">*</span>

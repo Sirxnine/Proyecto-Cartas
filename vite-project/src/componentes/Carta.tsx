@@ -26,7 +26,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
   const puntosAtaque = carta.poder || 0;
   const puntosDefensa = carta.defensa || 0;
 
-  // Manejar error de imagen
+  // Error de imagen: mostrar placeholder y evitar spinner infinito
   const handleImageError = () => {
     setImageError(true);
     setImageLoading(false);
@@ -36,7 +36,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
     setImageLoading(false);
   };
 
-  // Manejar click en eliminar con confirmación
+  // Click de confirmación 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowConfirmDelete(true);
@@ -53,7 +53,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
     setShowConfirmDelete(false);
   };
 
-  // Manejar click en la carta (solo si no está eliminándose)
+  // Click en carta si no es para eliminar
   const handleCardClick = () => {
     if (!isDeleting && !showConfirmDelete) {
       onClick(carta);
@@ -121,7 +121,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
         }`}
       >
         <div className="relative h-full w-full rounded-[2.2rem] overflow-hidden bg-black">
-          {/* Imagen con fallback */}
+          {/* Opción si la imagen falla */}
           {!imageError ? (
             <img 
               src={carta.imagen} 
@@ -134,16 +134,14 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+            <div className="w-full h-full flex flex-col items-center justify-center bg-linear-to-br from-gray-800 to-gray-900">
               <RiAlertLine className="text-gray-500 text-4xl mb-2" />
               <span className="text-gray-500 text-xs font-mono">Sin imagen</span>
             </div>
           )}
-          
-          {/* Overlay gradiente */}
           <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/60" />
 
-          {/* HEADER: Nombre y HP */}
+          {/* Nombre y HP */}
           <div className="absolute top-4 left-4 right-4 space-y-2">
             <div className="flex justify-between items-center">
               <div className="bg-white px-3 py-0.5 -skew-x-12 shadow-lg">
@@ -169,7 +167,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
             )}
           </div>
 
-          {/* FOOTER: Atk y Def */}
+          {/* Atk y Def */}
           <div className="absolute bottom-5 left-4 right-4 flex gap-2">
             <div className="flex-1 flex justify-between items-center bg-red-900/80 backdrop-blur-sm border-l-2 border-red-500 px-2 py-1 rounded-r-lg shadow-lg">
               <RiSwordLine className="text-red-500 text-[10px]" />
@@ -183,7 +181,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
 
           {/* Efecto de brillo en hover */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-cyan-500/20 via-transparent to-transparent" />
           </div>
         </div>
       </button>
@@ -191,7 +189,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
       {/* Tooltip con habilidad ultimate (opcional) */}
       {carta.habilidadUltimate && (
         <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
-          <div className="bg-black/90 backdrop-blur-sm text-white text-[8px] font-mono px-2 py-1 rounded border border-cyan-500/30 whitespace-nowrap shadow-lg">
+          <div className="bg-black/90 backdrop-blur-sm text-white text-[6px] font-mono px-2 py-1 rounded border border-cyan-500/30 whitespace-nowrap shadow-lg">
             ⚡ {carta.habilidadUltimate.length > 30 
                 ? carta.habilidadUltimate.substring(0, 30) + '...' 
                 : carta.habilidadUltimate}
