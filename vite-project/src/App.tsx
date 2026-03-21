@@ -5,10 +5,10 @@ import FormularioCarta from './pages/Form';
 import Home from './pages/Home';
 import EditarCarta from './pages/updateCard';
 
-const API_URL = import.meta.env.VITE_EDUCA_API_URL;
+export const API_URL = import.meta.env.VITE_EDUCA_API_URL;
 
 function App() {
-  const [cartas, setCartas] = useState<Carta[]>([]);
+  const [cartas, setCartas] = useState<Carta[]>([])
   
   // Estados de loading para diferentes operaciones
   const [loading, setLoading] = useState({
@@ -43,7 +43,7 @@ function App() {
       console.error('Error fetching cartas:', e);
       // Podríamos mostrar un toast de error aquí
     } finally {
-      setLoadingState('fetch', false);
+      setLoadingState('fetch', true);
     }
   };
 
@@ -51,31 +51,7 @@ function App() {
     fetchCartas();
   }, []);
 
-  const addCarta = async (carta: Carta) => {
-    setLoadingState('create', true);
-    try {
-      const response = await fetch(`${API_URL}/card`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json", 
-          usersecretpasskey: "Leon422088LA" 
-        },
-        body: JSON.stringify(toApiCardMapper(carta))
-      });
 
-      if (!response.ok) {
-        throw new Error("Error al crear la carta");
-      }
-
-      await fetchCartas(); // Recargamos la lista
-      return { success: true }; // Podríamos devolver información
-    } catch (e) {
-      console.error("Error adding task:", e);
-      return { success: false, error: e };
-    } finally {
-      setLoadingState('create', false);
-    }
-  };
   
   const updateCarta = async (carta: Carta) => {
     setLoadingState('update', true);
@@ -134,10 +110,8 @@ function App() {
         element={
           <Home 
             cartas={cartas} 
-            loading={loading} // Pasamos todos los estados de loading
-            añadirCarta={addCarta} 
+            loading={loading} // Pasamos todos los estados de loading 
             eliminarCarta={deleteCarta} 
-            onGuardar={updateCarta} 
           />
         } 
       />
@@ -145,8 +119,7 @@ function App() {
         path='/Form' 
         element={
           <FormularioCarta 
-            onCrear={addCarta}
-            loading={loading.create} // Pasamos solo el loading de create
+             fetchCartas={fetchCartas} // Pasamos la función para recargar cartas después de crear
           />
         } 
       />
@@ -154,6 +127,7 @@ function App() {
         path='/Edit/:id' 
         element={
           <EditarCarta 
+          cartas={cartas}   
             onGuardar={updateCarta}
             loading={loading.update} // Pasamos solo el loading de update
           />

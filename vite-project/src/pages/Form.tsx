@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { 
   RiAddLine, 
   RiImageAddLine, 
@@ -10,15 +10,19 @@ import {
   RiErrorWarningLine 
 } from "react-icons/ri";
 import { BsFeather } from "react-icons/bs";
-import { useNavigate } from 'react-router';
-import type { Carta } from "../types";
+import { Link, useNavigate } from 'react-router';
+import { memo } from "react";
+import { toApiCardMapper, type Carta } from "../types";
+import { API_URL } from "../App";
 
 interface FormularioCartaProps {
-  onCrear: (carta: Carta) => Promise<{ success: boolean; error?: any }>;
-  loading?: boolean;
-}
+   fetchCartas: () => Promise<void>
 
-const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => {
+} 
+
+
+const FormularioCarta = ({ fetchCartas }: FormularioCartaProps) => {
+  const [loading, setLoading] = useState(false);  
   const [formData, setFormData] = useState({
     nombre: '',   
     tipo: 'Luchador',
@@ -33,6 +37,32 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
+
+    const addCarta = async (carta: Carta) => {
+      setLoading(true);
+      try {
+        const response = await fetch(`${API_URL}/card`, {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json", 
+            usersecretpasskey: "Leon422088LA" 
+          },
+          body: JSON.stringify(toApiCardMapper(carta))
+        });
+  
+        if (!response.ok) {
+          throw new Error("Error al crear la carta");
+        }
+  
+       //aait fetchCartas(); // Recargamos la lista
+        return { success: true }; // Podríamos devolver información
+      } catch (e) {
+        console.error("Error adding task:", e);
+        return { success: false, error: e };
+      } finally {
+            setLoading(true);
+      }
+    };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -93,14 +123,14 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
     };
 
     try {
-      const result = await onCrear(nuevaCarta);
+      const result = await addCarta(nuevaCarta);
       
       if (result.success) {
         setSuccess(true);
         // Pequeña pausa para mostrar el éxito antes de navegar
-        setTimeout(() => {
-          navigate('/');
-        }, 1000);
+        // setTimeout(() => {
+        //   navigate('/');
+        // }, 1000);
       } else {
         setError("Error al crear la carta. Intenta de nuevo.");
       }
@@ -123,7 +153,9 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
             <RiCheckLine className="text-green-400 text-5xl" />
           </div>
           <h2 className="text-3xl font-black text-white mb-2">¡CARTA CREADA!</h2>
-          <p className="text-green-400/70">Redirigiendo al inicio...</p>
+          <Link to="/" >
+          <p className="text-green-400/70 hover:underline">Volver al inicio</p>
+          </Link>
         </div>
       </div>
     );
@@ -373,14 +405,14 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
                 {loading ? (
-                  <>
+                  <div>
                     <RiLoader4Line className="animate-spin text-2xl" />
                     CREANDO CARTA...
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div>
                     Crear Carta <RiAddLine className="text-2xl" />
-                  </>
+                  </div>
                 )}
               </span>
             </button>
@@ -398,4 +430,4 @@ const FormularioCarta = ({ onCrear, loading = false }: FormularioCartaProps) => 
   );
 };
 
-export default FormularioCarta;
+export default memo(FormularioCarta);

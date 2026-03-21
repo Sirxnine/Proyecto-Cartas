@@ -16,75 +16,18 @@ import type { Carta } from "../types";
 import type { EditarCartaProps } from "../types/index";
 
 
-const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
+const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) => {
   const { id } = useParams();
   const navigate = useNavigate();
   
   // Estados
-  const [cargandoDatos, setCargandoDatos] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    nombre: '',
-    tipo: 'Luchador',
-    poder: 0,
-    defensa: 0,
-    habilidadUltimate: '',
-    descripcion: '',
-    imagen: '',
-    hp: 0
-  });
+  const [formData, setFormData] = useState(cartas.find(c => c.id === parseInt(id || ''))!);
+
+  console.log("FormData",formData)
 
   // Cargar datos de la carta al montar el componente
-  useEffect(() => {
-    const fetchCarta = async () => {
-      try {
-        setCargandoDatos(true);
-        setError(null);
-        
-        const API_URL = import.meta.env.VITE_EDUCA_API_URL;
-        const response = await fetch(`${API_URL}/card/${id}`, {
-          headers: {
-            usersecretpasskey: "Leon422088LA"
-          }
-        });
-        
-        if (!response.ok) {
-          if (response.status === 404) {
-            throw new Error("La carta no existe");
-          }
-          throw new Error("Error al cargar la carta");
-        }
-        
-        const data = await response.json();
-        const apiCard = data.data;
-        
-        // Mapear los datos de la API al formato del formulario
-        setFormData({
-          nombre: apiCard.name || '',
-          tipo: apiCard.attributes?.tipo || 'Luchador',
-          poder: apiCard.attack || 0,
-          defensa: apiCard.defense || 0,
-          habilidadUltimate: apiCard.attributes?.habilidadUltimate || '',
-          descripcion: apiCard.description || '',
-          imagen: apiCard.pictureUrl || '',
-          hp: apiCard.lifePoints || 0
-        });
-      } catch (error) {
-        console.error('Error cargando carta:', error);
-        setError(error instanceof Error ? error.message : "No se pudo cargar la carta");
-      } finally {
-        setCargandoDatos(false);
-      }
-    };
-
-    if (id) {
-      fetchCarta();
-    } else {
-      setError("ID de carta no válido");
-      setCargandoDatos(false);
-    }
-  }, [id]);
 
   // Manejar cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -178,7 +121,7 @@ const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
   };
 
   // Loading state - Cargando datos iniciales
-  if (cargandoDatos) {
+  if (loading) {
     return (
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#030303]">
         <div className="relative">
@@ -478,14 +421,14 @@ const EditarCarta = ({ onGuardar, loading = false }: EditarCartaProps) => {
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span className="relative z-10 text-black font-black uppercase italic tracking-tighter text-xl flex items-center justify-center gap-3">
                 {loading ? (
-                  <>
+                  <div>
                     <RiLoader4Line className="animate-spin text-2xl" />
                     GUARDANDO...
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div>
                     Guardar Cambios <RiSaveLine className="text-2xl" />
-                  </>
+                  </div>
                 )}
               </span>
             </button>

@@ -27,7 +27,6 @@ export interface ListaCartasProps {
   cartas: Carta[];
   onCartaClick: (carta: Carta) => void;
   onEliminarCarta: (id: number) => void;
-  onAñadirCarta: (carta: Carta) => void;
 }
 
 export interface ModalCartaProps {
@@ -44,9 +43,7 @@ export interface HomeProps {
     update: boolean;
     delete: boolean;
   };
-  añadirCarta: (nueva: Carta) => void;
   eliminarCarta: (id: number) => void;
-  onGuardar: (carta: Carta) => Promise<{ success: boolean; error?: any }>
 }
 
 export interface IApiCard {
@@ -97,4 +94,5 @@ export const toCardApiMapper = (apiCard: IApiCard): Carta => ({
 export interface EditarCartaProps {
   onGuardar: (carta: Carta) => Promise<{ success: boolean; error?: any }>;
   loading?: boolean;
+  cartas: Carta[];
 }

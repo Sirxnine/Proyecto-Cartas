@@ -8,7 +8,7 @@ import type { Carta } from "../types";
 import type { HomeProps } from "../types/index";
 
 
-const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
+const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
@@ -53,15 +53,15 @@ const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
             {/* Indicador de estado con loading */}
             <span className="text-[10px] font-black tracking-[0.5em] text-white/30 uppercase italic flex items-center gap-2">
               {loading.fetch ? (
-                <>
+                <div>
                   <BsArrowRepeat className="animate-spin text-cyan-400" />
                   SINCRONIZANDO...
-                </>
+                </div>
               ) : (
-                <>
+                <div>
                   {busqueda ? `Resultados: ${cartasFiltradas.length}` : 'Colección Completa'}
                   <BsFeather className="inline text-xs not-italic ml-1 font-serif opacity-90" />
-                </>
+                </div>
               )}
             </span>
             
@@ -72,7 +72,7 @@ const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
           {loading.fetch && cartas.length === 0 ? (
             <LoadingSpinner />
           ) : (
-            <>
+            <div>
               {busqueda.trim() !== "" && cartasFiltradas.length === 0 && (
                 <div className="text-center py-20 border-2 border-dashed border-white/5 rounded-[3rem] bg-white/2">
                   <p className="text-cyan-400 text-2xl font-black italic tracking-tighter uppercase mb-2">
@@ -95,11 +95,10 @@ const Home = ({ cartas, loading, añadirCarta, eliminarCarta }: HomeProps) => {
                   cartas={cartasFiltradas} 
                   onCartaClick={abrirModalCarta}  
                   onEliminarCarta={eliminarCarta}
-                  onAñadirCarta={añadirCarta} 
                   loadingDelete={loading.delete} 
                 />
               </div>
-            </>
+            </div>
           )}
         </main>
       </div>
