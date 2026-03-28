@@ -26,7 +26,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
   const puntosAtaque = carta.poder || 0;
   const puntosDefensa = carta.defensa || 0;
 
-  // Error de imagen: mostrar placeholder y evitar spinner infinito
+  // Error en la imagen: mostrar placeholder y evitar spinner infinito
   const handleImageError = () => {
     setImageError(true);
     setImageLoading(false);
@@ -99,7 +99,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
         </div>
       )}
 
-      {/* Indicador de "viendo detalles" */}
+      {/* Indicador de ojito */}
       <div className="absolute -top-2 -left-2 z-40 p-1.5 bg-cyan-600 text-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all">
         <RiEyeLine size={14} />
       </div>
@@ -167,7 +167,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
             )}
           </div>
 
-          {/* Atk y Def */}
+          {/* Poder y Defensa */}
           <div className="absolute bottom-5 left-4 right-4 flex gap-2">
             <div className="flex-1 flex justify-between items-center bg-red-900/80 backdrop-blur-sm border-l-2 border-red-500 px-2 py-1 rounded-r-lg shadow-lg">
               <RiSwordLine className="text-red-500 text-[10px]" />

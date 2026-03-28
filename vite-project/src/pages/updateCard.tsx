@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { 
   RiImageAddLine, 
   RiShieldLine, 
@@ -21,7 +21,7 @@ const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) =
   const navigate = useNavigate();
   
   // Estados
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);  
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState(cartas.find(c => c.id === parseInt(id || ''))!);
 
@@ -145,7 +145,7 @@ const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) =
     );
   }
 
-  // Error state - No se pudo cargar la carta
+  // Error state - Error al cargar datos
   if (error && !formData.nombre) {
     return (
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#030303]">

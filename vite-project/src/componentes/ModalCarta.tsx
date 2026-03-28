@@ -73,9 +73,6 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
         <div className="relative z-10 p-8 flex justify-between items-start">
           <h2 className="text-4xl font-black text-white italic uppercase tracking-tighter leading-none">
             {carta.nombre} <span className="text-xl font-bold opacity-60"></span>
-          <div className=" flex bg-cyan-600/20 backdrop-blur-sm border border-cyan-500/30 px-3 py-1 rounded-full text-white text-2xl w-max mx-5 mb-4">
-              {carta.tipo}
-        </div>
           </h2>
           <div className="text-right">
             <span className="text-white/40 text-[9px] font-black block tracking-widest uppercase">Puntos Salud</span>
@@ -97,7 +94,7 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/15 p-4 rounded-2xl">
-            <div className="flex items-center gap-1.5 mb-1 text-yellow-400 font-black uppercase text-[9px] tracking-widest">
+            <div className="flex items-center gap-1.5 mb-1 text-yellow-400 font-black uppercase text-[12px] tracking-widest">
               <RiFocus3Line size={16} /> {carta.tipo}
             </div>
             <h3 className="text-lg font-black text-white italic leading-none mb-2">

@@ -6,9 +6,9 @@ export interface Carta {
   hp: number;
   descripcion: string;
   imagen: string;
-  tipo: string; // Cambiado: ahora está directamente en Carta
-  habilidadUltimate: string; // Cambiado: ahora está directamente en Carta
-  anime?: string; // Opcional para las cartas de ejemplo
+  tipo: string;
+  habilidadUltimate: string; 
+  anime?: string; 
 }
 export type NuevaCarta = Omit<Carta, 'id'>;
 
@@ -96,3 +96,7 @@ export interface EditarCartaProps {
   loading?: boolean;
   cartas: Carta[];
 }
+
+export interface FormularioCartaProps {
+   fetchCartas: () => Promise<void>
+} 

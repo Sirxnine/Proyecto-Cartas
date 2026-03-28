@@ -12,13 +12,13 @@ function App() {
   
   // Estados de loading para diferentes operaciones
   const [loading, setLoading] = useState({
-    fetch: false,     // Cargando lista inicial
-    create: false,    // Creando carta
-    update: false,    // Actualizando carta
-    delete: false     // Eliminando carta
+    fetch: false,    
+    create: false,    
+    update: false,    
+    delete: false     
   });
 
-  // Función para actualizar loading de forma segura
+  // Función para actualizar loading
   const setLoadingState = (operation: keyof typeof loading, value: boolean) => {
     setLoading(prev => ({ ...prev, [operation]: value }));
   };
@@ -41,7 +41,6 @@ function App() {
       setCartas(cartasMapped);
     } catch (e) {
       console.error('Error fetching cartas:', e);
-      // Podríamos mostrar un toast de error aquí
     } finally {
       setLoadingState('fetch', true);
     }
@@ -71,7 +70,7 @@ function App() {
       }
       
       console.log("Actualización exitosa");
-      await fetchCartas(); // Recargamos la lista
+      await fetchCartas(); 
       return { success: true };
     } catch (e) {
       console.error("Error al actualizar la carta:", e);
