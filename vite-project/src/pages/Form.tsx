@@ -1,3 +1,4 @@
+  // Importaciones necesarias
   import {  useState } from "react";
   import { 
     RiAddLine, 
@@ -15,8 +16,10 @@
   import { toApiCardMapper, type Carta, type FormularioCartaProps} from "../types";
   import { API_URL } from "../App";
 
-
+// Componente de formulario para crear una nueva carta, con validación y manejo de estado de carga
   const FormularioCarta = ({ fetchCartas }: FormularioCartaProps) => {
+
+    {/* Estado para manejo de formulario */}
     const [loading, setLoading] = useState(false);  
     const [formData, setFormData] = useState({
       nombre: '',   
@@ -29,10 +32,12 @@
       hp: 0
     });
 
+    {/* Estados para manejo de errores y éxito */}
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
+    {/* Función para agregar carta a la API, con manejo de loading y errores */}
       const addCarta = async (carta: Carta) => {
         setLoading(true);
         try {
@@ -48,27 +53,29 @@
           if (!response.ok) {
             throw new Error("Error al crear la carta");
           }
-    
-        //aait fetchCartas(); // Recargamos la lista
-          return { success: true }; // Podríamos devolver información
+        {/* Si la carta se creó exitosamente, actualizar la lista de cartas en el componente padre */}
+        fetchCartas(); 
+          return { success: true }; 
         } catch (e) {
           console.error("Error adding task:", e);
           return { success: false, error: e };
         } finally {
-              setLoading(true);
+            setLoading(true);
         }
       };
-
+    {/* Función para actualizar carta en la API, con manejo de loading y errores */}
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const { name, value } = e.target;
       setFormData(prev => ({
         ...prev,
         [name]: name === 'poder' || name === 'defensa' || name === 'hp' ? Number(value) : value
       }));
-      // Limpiar error cuando el usuario empieza a escribir
+
+      {/* Si hay un error, limpiarlo al cambiar cualquier campo del formulario */}
       if (error) setError(null);
     };
 
+    {/* Función para validar el formulario antes de enviar, con mensajes de error específicos */}
     const validateForm = (): boolean => {
       if (!formData.nombre.trim()) {
         setError("El nombre es obligatorio");
@@ -97,14 +104,17 @@
       return true;
     };
 
+    {/* Función para manejar el submit del formulario, con validación y manejo de estado de carga */}
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       setError(null);
       
+      {/* Validar el formulario antes de enviar, si no es válido, mostrar mensaje de error y no continuar */}
       if (!validateForm()) {
         return;
       }
-
+      
+      {/* Crear un nuevo objeto de carta con los datos del formulario, usando el mapeo para la API */}
       const nuevaCarta: Carta = {
         id: Date.now(), 
         nombre: formData.nombre.trim(),
@@ -116,7 +126,7 @@
         tipo: formData.tipo,
         habilidadUltimate: formData.habilidadUltimate.trim()
       };
-
+      {/* Intentar agregar la carta a la API, si hay un error, mostrar mensaje de error específico */}
       try {
         const result = await addCarta(nuevaCarta);
         
@@ -131,11 +141,12 @@
       }
     };
 
+    {/* Función para manejar el click en cancelar, navegando de vuelta al inicio */}
     const handleCancel = () => {
       navigate('/');
     };
 
-    // Si la carta se creó exitosamente, mostrar mensaje de éxito
+    {/* Si la carta se creó exitosamente, mostrar mensaje de éxito y opción para volver al inicio */}
     if (success) {
       return (
         <div className="min-h-screen w-full flex items-center justify-center bg-[#030303]">
@@ -154,6 +165,7 @@
 
     return (
       <div className="min-h-screen w-full relative flex items-center justify-center p-6 overflow-hidden bg-[#030303]">
+        
         {/* Efectos de fondo */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full animate-pulse" />

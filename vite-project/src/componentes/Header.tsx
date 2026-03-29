@@ -1,7 +1,9 @@
+//Importaciones necesarias
 import type { HeaderProps } from '../types/index';
 import { BsFeather } from "react-icons/bs";
 import { Link } from 'react-router';
 
+// Componente de encabezado con búsqueda y botón de creación
 function Header({ busqueda, setBusqueda }: HeaderProps) {
   return (
     <header className="border-b border-white/10 bg-black/40 backdrop-blur-md sticky top-0 z-40">
@@ -21,7 +23,7 @@ function Header({ busqueda, setBusqueda }: HeaderProps) {
               <div className="h-1 w-full bg-linear-to-r from-cyan-500 to-transparent rounded-full opacity-50"></div>
             </div>
           </div>
-
+          {/* Botón para crear nueva carta */}
           <Link to="/Form">
             <button
               className="px-8 py-3 rounded-full font-black italic uppercase tracking-tighter transition-all duration-300 transform active:scale-95 border-2 cursor-pointer bg-linear-to-r from-cyan-500 to-blue-500 text-white shadow-lg hover:shadow-xl"
@@ -30,6 +32,7 @@ function Header({ busqueda, setBusqueda }: HeaderProps) {
             </button>
           </Link>
 
+          {/* Campo de búsqueda */}
           <div className="relative w-full md:w-96">
             <input
               type="text"

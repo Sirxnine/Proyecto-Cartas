@@ -1,18 +1,18 @@
+// Importaciones necesarias
 import { RiCloseLine, RiSwordLine, RiShieldLine, RiFocus3Line, RiEditLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
-import type { Carta } from "../types";
+import type { ModalCartaProps } from "../types";
 
-interface Props {
-  carta: Carta | null;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
+// Componente de modal para mostrar detalles de una carta, con opciones de edición y cierre
+const ModalCarta = ({ carta, isOpen, onClose }: ModalCartaProps) => {
+  
+  {/* Hook de navegación para redirigir a la página de edición */}
   const navigate = useNavigate();
 
+{/* Si el modal no está abierto o no hay carta, no renderizar nada */}
   if (!isOpen || !carta) return null;
 
+  {/* Función para manejar el clic en el botón de edición, redirigiendo a la página de edición de la carta */}
   const handleEditClick = () => {
     onClose();
     navigate(`/Edit/${carta.id}`);
@@ -21,9 +21,11 @@ const ModalCarta = ({ carta, isOpen, onClose }: Props) => {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 overflow-hidden">
       
-      {/* Fondo con cartas desplegadas - EFECTO ORIGINAL */}
+      {/* Fondo con cartas desplegadas */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm">
         <div className="absolute inset-0 opacity-30">
+
+          {/* Cartas flotantes de fondo para efecto visual */}
           {[...Array(6)].map((_, i) => (
             <div
               key={i}

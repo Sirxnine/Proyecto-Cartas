@@ -1,3 +1,4 @@
+//Importaciones de librerías y componentes
 import { BsFeather, BsArrowRepeat } from "react-icons/bs";
 import { RiLoader4Line } from "react-icons/ri";
 import Header from "../componentes/Header";
@@ -7,12 +8,15 @@ import { useMemo, useState } from "react";
 import type { Carta } from "../types";
 import type { HomeProps } from "../types/index";
 
-
+// Componente principal de la página de inicio, con búsqueda, listado de cartas y modal de detalles
 const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
+
+  {/* Estado para la búsqueda, control del modal y carta seleccionada para mostrar en el modal */}
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
 
+  {/* Filtrar las cartas según la búsqueda, buscando en el nombre y tipo de carta */}
   const cartasFiltradas = useMemo(() => {
     return cartas.filter(carta =>
       carta.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
@@ -20,17 +24,19 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
     );
   }, [cartas, busqueda]);
 
+  {/* Función para abrir el modal con los detalles de la carta seleccionada */}
   const abrirModalCarta = (carta: Carta) => {
     setCartaSeleccionada(carta);
     setMostrarModal(true);
   };
 
+  {/* Función para cerrar el modal, limpiando la carta seleccionada después de una pequeña animación de cierre */}
   const cerrarModal = () => {
     setMostrarModal(false);
     setTimeout(() => setCartaSeleccionada(null), 300);
   };
 
-  // Componente de loading personalizado
+  {/* Componente de spinner de carga para mostrar mientras se obtienen los datos de la API */}
   const LoadingSpinner = () => (
     <div className="flex flex-col items-center justify-center py-20">
       <RiLoader4Line className="text-cyan-400 text-5xl animate-spin" />
@@ -84,6 +90,7 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
                 </div>
               )}
 
+              {/*Llamar al modal de carta con la carta seleccionada y control de apertura/cierre */}
               <ModalCarta
                 carta={cartaSeleccionada}
                 isOpen={mostrarModal}
@@ -91,6 +98,7 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
               />
               
               <div className="animate-in fade-in duration-700">
+                {/* Componente de lista de cartas, pasando las cartas filtradas, función para abrir el modal y función para eliminar carta con estado de carga para eliminación */}
                 <ListaCartas 
                   cartas={cartasFiltradas} 
                   onCartaClick={abrirModalCarta}  

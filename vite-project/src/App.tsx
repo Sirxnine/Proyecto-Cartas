@@ -1,3 +1,5 @@
+//Importaciones de React, mapeadores para convertir entre la estructura de la carta en la API y la estructura utilizada en la aplicación, tipos de carta e interfaz para las cartas obtenidas de la API, y componentes de rutas para las diferentes páginas del proyecto
+
 import { useEffect, useState } from 'react';
 import { toApiCardMapper, toCardApiMapper, type Carta, type IApiCard } from './types/index';
 import { Route, Routes } from 'react-router';
@@ -5,9 +7,12 @@ import FormularioCarta from './pages/Form';
 import Home from './pages/Home';
 import EditarCarta from './pages/updateCard';
 
+
+  // URL base de la API, obtenida de las variables de entorno
 export const API_URL = import.meta.env.VITE_EDUCA_API_URL;
 
 function App() {
+  // Estado para almacenar las cartas obtenidas de la API
   const [cartas, setCartas] = useState<Carta[]>([])
   
   // Estados de loading para diferentes operaciones
@@ -23,6 +28,7 @@ function App() {
     setLoading(prev => ({ ...prev, [operation]: value }));
   };
 
+// Función para obtener las cartas desde la API
   const fetchCartas = async () => {
     setLoadingState('fetch', true);
     try {
@@ -51,7 +57,7 @@ function App() {
   }, []);
 
 
-  
+{/*  Función para actualizar una carta, recibiendo la carta actualizada, enviándola a la API y recargando la lista de cartas después de la actualización */}
   const updateCarta = async (carta: Carta) => {
     setLoadingState('update', true);
     try {
@@ -80,6 +86,7 @@ function App() {
     }
   };
 
+  {/* Función para eliminar una carta, recibiendo el ID de la carta a eliminar, enviando la solicitud a la API y recargando la lista de cartas después de la eliminación */}
   const deleteCarta = async (id: number) => {
     setLoadingState('delete', true);
     try {

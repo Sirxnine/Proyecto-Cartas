@@ -1,3 +1,4 @@
+//Importaciones de iconos y hooks
 import { 
   RiCloseLine, 
   RiSwordLine, 
@@ -10,18 +11,22 @@ import {
 import { useState } from "react";
 import type { Carta as CartaType } from '../types';
 
+// Llamamos a la interfaz de props para adaptarla al componente
 interface CartaProps {
   carta: CartaType;
   onClick: (carta: CartaType) => void;
   onEliminar: (id: number) => void;
   isDeleting?: boolean;
 }
-
+// Componente de carta individual
 function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
+
+  //Estados para manejo de imagen y confirmación de eliminación
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   
+  // Variables para mostrar puntos de vida, ataque y defensa, con valores por defecto
   const puntosVida = carta.hp || 0;
   const puntosAtaque = carta.poder || 0;
   const puntosDefensa = carta.defensa || 0;
@@ -36,18 +41,20 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
     setImageLoading(false);
   };
 
-  // Click de confirmación 
+  // Click para eliminar carta
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowConfirmDelete(true);
   };
 
+  // Confirmar eliminación
   const handleConfirmDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowConfirmDelete(false);
     onEliminar(carta.id);
   };
 
+  // Cancelar eliminación
   const handleCancelDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowConfirmDelete(false);
@@ -111,6 +118,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
         </div>
       )}
 
+      {/* Overlay de confirmación de eliminación */}
       <button 
         onClick={handleCardClick}
         disabled={isDeleting || showConfirmDelete}
@@ -121,6 +129,7 @@ function Carta({ carta, onClick, onEliminar, isDeleting = false }: CartaProps) {
         }`}
       >
         <div className="relative h-full w-full rounded-[2.2rem] overflow-hidden bg-black">
+
           {/* Opción si la imagen falla */}
           {!imageError ? (
             <img 

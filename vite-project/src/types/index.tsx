@@ -1,3 +1,5 @@
+// Definición de tipos e interfaces para el proyecto de cartas, incluyendo la estructura de una carta, props para componentes y mapeadores para la API
+
 export interface Carta {
   id: number;
   nombre: string;
@@ -98,5 +100,5 @@ export interface EditarCartaProps {
 }
 
 export interface FormularioCartaProps {
-   fetchCartas: () => Promise<void>
+  fetchCartas: () => Promise<void>
 } 

@@ -1,3 +1,4 @@
+//Importaciones de librerías y componentes
 import { useState } from "react";
 import { 
   RiImageAddLine, 
@@ -15,19 +16,23 @@ import { useNavigate, useParams } from 'react-router';
 import type { Carta } from "../types";
 import type { EditarCartaProps } from "../types/index";
 
-
+//Componente para editar una carta, con formulario controlado
 const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) => {
+
+  // Obtener ID de la carta desde los parámetros de la URL y función de navegación de React Router
   const { id } = useParams();
+
+  // Hook de navegación para redirigir después de guardar o cancelar
   const navigate = useNavigate();
   
   // Estados
   const [error, setError] = useState<string | null>(null);  
   const [success, setSuccess] = useState(false);
+
+  // Estado para el formulario, inicializado con los datos de la carta a editar, buscando en la lista de cartas por el ID obtenido de la URL. Se asume que el componente padre ya ha cargado las cartas.
   const [formData, setFormData] = useState(cartas.find(c => c.id === parseInt(id || ''))!);
 
   console.log("FormData",formData)
-
-  // Cargar datos de la carta al montar el componente
 
   // Manejar cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -36,6 +41,7 @@ const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) =
       ...prev,
       [name]: name === 'poder' || name === 'defensa' || name === 'hp' ? Number(value) : value
     }));
+
     // Limpiar error cuando el usuario empieza a escribir
     if (error) setError(null);
   };
@@ -196,6 +202,7 @@ const EditarCarta = ({ onGuardar, loading = false, cartas }: EditarCartaProps) =
   // Formulario de edición
   return (
     <div className="min-h-screen w-full relative flex items-center justify-center p-6 overflow-hidden bg-[#030303]">
+      
       {/* Efectos de fondo */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-600/10 blur-[120px] rounded-full animate-pulse" />
