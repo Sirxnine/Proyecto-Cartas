@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import FormularioCarta from './pages/Form';
 import Home from './pages/Home';
 import EditarCarta from './pages/updateCard';
+import SeleccionarCarta from './componentes/SeleccionarCarta';
 
 
   // URL base de la API, obtenida de las variables de entorno
@@ -14,7 +15,7 @@ export const API_URL = import.meta.env.VITE_EDUCA_API_URL;
 function App() {
   // Estado para almacenar las cartas obtenidas de la API
   const [cartas, setCartas] = useState<Carta[]>([])
-  
+
   // Estados de loading para diferentes operaciones
   const [loading, setLoading] = useState({
     fetch: false,    
@@ -139,6 +140,15 @@ function App() {
           />
         } 
       />
+        <Route 
+        path='/seleccionar-carta'
+        element={
+          <SeleccionarCarta
+            mazo={cartas}
+            loading={loading.fetch}
+          />
+        }
+        />
     </Routes>
   );
 }
