@@ -1,10 +1,11 @@
-//Importaciones de librerías y componentes
+// Importaciones de librerías y componentes
 import { BsFeather, BsArrowRepeat } from "react-icons/bs";
 import { RiLoader4Line } from "react-icons/ri";
 import Header from "../componentes/Header";
 import ListaCartas from "../componentes/ListaCartas";
 import ModalCarta from "../componentes/ModalCarta";
 import { useMemo, useState } from "react";
+import { Link } from "react-router"; 
 import type { Carta } from "../types";
 import type { HomeProps } from "../types/index";
 
@@ -56,20 +57,30 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
           <div className="mb-8 flex items-center gap-4">
             <div className="h-px grow bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
             
-            {/* Indicador de estado con loading */}
-            <span className="text-[10px] font-black tracking-[0.5em] text-white/30 uppercase italic flex items-center gap-2">
+            {/* CORREGIDO: Cambiado de <span> a <div> para evitar el error de removeChild */}
+            <div className="text-[10px] font-black tracking-[0.5em] text-white/30 uppercase italic flex items-center">
               {loading.fetch ? (
-                <div>
+                <div className="flex items-center gap-2">
                   <BsArrowRepeat className="animate-spin text-cyan-400" />
                   SINCRONIZANDO...
                 </div>
               ) : (
-                <div>
-                  {busqueda ? `Resultados: ${cartasFiltradas.length}` : 'Colección Completa'}
-                  <BsFeather className="inline text-xs not-italic ml-1 font-serif opacity-90" />
+                <div className="flex items-center gap-6">
+                  <div>
+                    {busqueda ? `Resultados: ${cartasFiltradas.length}` : 'Colección Completa'}
+                    <BsFeather className="inline text-xs not-italic ml-1 font-serif opacity-90" />
+                  </div>
+
+                  {/* BOTÓN ESTILIZADO AL MODO BATALLA */}
+                  <Link 
+                    to="/seleccionar-carta"
+                    className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 font-mono text-[9px] tracking-widest rounded-lg transition-all duration-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] not-italic normal-case"
+                  >
+                    MODO BATALLA ⚔️
+                  </Link>
                 </div>
               )}
-            </span>
+            </div>
             
             <div className="h-px grow bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
           </div>
@@ -90,7 +101,7 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
                 </div>
               )}
 
-              {/*Llamar al modal de carta con la carta seleccionada y control de apertura/cierre */}
+              {/* Llamar al modal de carta con la carta seleccionada y control de apertura/cierre */}
               <ModalCarta
                 carta={cartaSeleccionada}
                 isOpen={mostrarModal}

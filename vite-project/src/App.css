@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@keyframes strike-p1 {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(50px) scale(1.05); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes strike-p2 {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50px) scale(1.05); }
+  100% { transform: translateX(0); }
+}
+
+.animate-strike-p1 { animation: strike-p1 0.3s ease-in-out; }
+.animate-strike-p2 { animation: strike-p2 0.3s ease-in-out; }
