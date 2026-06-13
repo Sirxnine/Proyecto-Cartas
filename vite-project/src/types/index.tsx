@@ -1,8 +1,6 @@
 // Definición de tipos e interfaces para el proyecto de cartas, incluyendo la estructura de una carta, props para componentes y mapeadores para la API
 
 export interface Carta {
-  ataque: number;
-  vida: ReactNode;
   id: number;
   nombre: string;
   poder: number;
