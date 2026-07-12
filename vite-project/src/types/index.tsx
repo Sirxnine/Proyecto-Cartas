@@ -29,6 +29,7 @@ export interface ListaCartasProps {
   cartas: Carta[];
   onCartaClick: (carta: Carta) => void;
   onEliminarCarta: (id: number) => void;
+  fetchCartas: () => Promise<void>;
 }
 
 export interface ModalCartaProps {
@@ -76,7 +77,8 @@ export const toApiCardMapper = (carta: Carta) => {
     defense: Number(carta.defensa),
     attributes: {
       tipo: carta.tipo || "Luchador",
-      habilidadUltimate: carta.habilidadUltimate || ""
+      habilidadUltimate: carta.habilidadUltimate || "",
+      anime: carta.anime || ""
     }
   };
 };
@@ -90,7 +92,8 @@ export const toCardApiMapper = (apiCard: IApiCard): Carta => ({
   hp: apiCard.lifePoints,
   imagen: apiCard.pictureUrl,
   tipo: apiCard.attributes?.tipo || 'Luchador',
-  habilidadUltimate: apiCard.attributes?.habilidadUltimate || ''
+  habilidadUltimate: apiCard.attributes?.habilidadUltimate || '',
+  anime: apiCard.attributes?.anime || ''
 });
 
 export interface EditarCartaProps {

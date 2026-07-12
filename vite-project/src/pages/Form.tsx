@@ -194,9 +194,21 @@
               <span className="flex items-center gap-1 text-cyan-400/60">
                 <BsFeather /> Sistema Online
               </span>
+              <button
+      onClick={() => navigate('/generar-ia')}
+     
+      className="group relative flex items-center justify-center bg-cyan-500 hover:bg-cyan-400 p-4 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.8)] border border-cyan-300/50"
+    >
+      <span className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12">
+        🤖
+      </span>
+      <span className="max-w-0 overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out group-hover:max-w-50 group-hover:ml-3 text-black font-black uppercase tracking-widest text-sm">
+        Crear con IA
+      </span>
+    </button>
             </div>
           </header>
-
+      
           {/* Mensaje de error */}
           {error && (
             <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-3">
@@ -419,6 +431,7 @@
                   )}
                 </span>
               </button>
+              
             </div>
 
             {/* Campos requeridos hint */}

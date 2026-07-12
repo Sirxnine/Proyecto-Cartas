@@ -3,12 +3,12 @@ import { RiLoader4Line } from "react-icons/ri";
 import Header from "../componentes/Header";
 import ListaCartas from "../componentes/ListaCartas";
 import ModalCarta from "../componentes/ModalCarta";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router"; 
 import type { Carta } from "../types";
 import type { HomeProps } from "../types/index";
 
-const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
+const Home = ({ cartas, loading, eliminarCarta, fetchCartas }: HomeProps & { fetchCartas: () => Promise<void> }) => {
   const [busqueda, setBusqueda] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cartaSeleccionada, setCartaSeleccionada] = useState<Carta | null>(null);
@@ -38,6 +38,10 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
       </p>
     </div>
   );
+
+  useEffect(() => {
+    fetchCartas(); // Se ejecutará cada vez que entres a la ruta Home
+  }, []);
 
   return (
     <div className="relative flex flex-col min-h-screen bg-[#050505] text-slate-100 selection:bg-cyan-500/30">
@@ -103,6 +107,7 @@ const Home = ({ cartas, loading, eliminarCarta }: HomeProps) => {
                   onCartaClick={abrirModalCarta}  
                   onEliminarCarta={eliminarCarta}
                   loadingDelete={loading.delete} 
+                  fetchCartas={fetchCartas}
                 />
               </div>
             </div>

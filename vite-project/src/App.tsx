@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import EditarCarta from './pages/updateCard';
 import SeleccionarCarta from './componentes/SeleccionarCarta';
 import CampoBatalla from './pages/CampoBatalla';
+import { GeneradorIA } from './pages/GeneradorIA';
 
 export const API_URL = import.meta.env.VITE_EDUCA_API_URL;
 
@@ -109,6 +110,7 @@ function App() {
         cartas={cartas} 
         loading={loading} 
         eliminarCarta={deleteCarta} 
+        fetchCartas={fetchCartas}
       />} />
 
       <Route path='/Form' element={
@@ -133,6 +135,7 @@ function App() {
         <CampoBatalla 
           cartas={cartas} />} 
       />
+      <Route path="/generar-ia" element={<GeneradorIA />} />
     </Routes>
   );
 }
